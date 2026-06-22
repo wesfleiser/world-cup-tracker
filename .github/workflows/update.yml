@@ -2,8 +2,9 @@ name: Daily results update
 
 on:
   schedule:
-    # 13:00 UTC every day (adjust to taste — this is ~9pm AWST/Perth time)
-    - cron: "0 13 * * *"
+    # 9am and 3pm AWST/Perth time (UTC+8, no daylight saving) = 01:00 and 07:00 UTC
+    - cron: "0 1 * * *"
+    - cron: "0 7 * * *"
   workflow_dispatch: {} # lets you trigger it manually from the Actions tab
 
 permissions:
