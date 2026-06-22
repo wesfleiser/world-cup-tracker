@@ -816,7 +816,10 @@
       "date": "2026-06-22",
       "team1": "Argentina",
       "team2": "Austria",
-      "score": null,
+      "score": [
+        2,
+        0
+      ],
       "venue": "Arlington"
     },
     {
@@ -1009,7 +1012,7 @@
       "num": 74,
       "round": "R32",
       "date": "2026-06-29",
-      "team1": "1E",
+      "team1": "Germany",
       "team2": "3A/B/C/D/F",
       "score": null,
       "venue": "Foxborough"
@@ -1054,7 +1057,7 @@
       "num": 79,
       "round": "R32",
       "date": "2026-06-30",
-      "team1": "1A",
+      "team1": "Mexico",
       "team2": "3C/E/F/H/I",
       "score": null,
       "venue": "Mexico City"
@@ -1072,7 +1075,7 @@
       "num": 81,
       "round": "R32",
       "date": "2026-07-01",
-      "team1": "1D",
+      "team1": "USA",
       "team2": "3B/E/F/I/J",
       "score": null,
       "venue": "Santa Clara"
