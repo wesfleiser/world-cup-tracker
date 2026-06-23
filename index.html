@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wes's World Cup Tracker</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <p class="eyebrow">2026 FIFA World Cup &bull; Tipping Competition</p>
+    <h1 id="siteTitle">World Cup Tracker</h1>
+    <p id="siteSubtitle">&nbsp;</p>
+    <div class="ticker">
+      <div class="ticker-cell">
+        <div class="ticker-label">Main pool winner</div>
+        <div class="ticker-value" id="prizeMain">$0</div>
+      </div>
+      <div class="ticker-cell">
+        <div class="ticker-label">Random comp winner</div>
+        <div class="ticker-value" id="prizeRandom">$0</div>
+      </div>
+      <div class="ticker-cell">
+        <div class="ticker-label">Updated</div>
+        <div class="ticker-value" id="lastUpdated">--</div>
+      </div>
+    </div>
+  </div>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="tab-ladder">Ladder</button>
+    <button class="tab-btn" data-tab="tab-draw">Draw</button>
+    <button class="tab-btn" data-tab="tab-road32">Road to 32</button>
+    <button class="tab-btn" data-tab="tab-rivals">Rivals</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ===================== LADDER ===================== -->
+  <section id="tab-ladder" class="tab-panel active">
+    <h2 class="panel-title">Ladder</h2>
+    <p class="panel-sub">+2 qualify from groups &rarr; +2 win R32 &rarr; +2 win R16 &rarr; +2 win QF &rarr; +2 win SF &rarr; +2 win Final</p>
+    <div class="legend">
+      <span><span class="legend-dot qualified"></span>Qualified</span>
+      <span><span class="legend-dot pending"></span>Pending (in the 3rd-place race)</span>
+      <span><span class="legend-dot playing"></span>Still in group stage</span>
+      <span><span class="legend-dot eliminated"></span>Out</span>
+    </div>
+
+    <div class="card">
+      <table id="ladderTable">
+        <thead><tr><th>#</th><th>Entrant &amp; picks</th><th style="text-align:right;">Win %</th><th style="text-align:right;">Pts</th></tr></thead>
+        <tbody id="ladderBody"></tbody>
+      </table>
+    </div>
+    <p class="panel-sub" style="margin-top:-4px;">Win % is a simulated estimate (not a guarantee!) based on each team's results so far — see README for how it works.</p>
+
+    <h2 class="panel-title" style="margin-top:32px;">Random Comp</h2>
+    <p class="panel-sub">Separate $40 leaderboard &mdash; one wildcard pick per entrant, scored the same way.</p>
+    <div class="card">
+      <table id="randomLadderTable">
+        <thead><tr><th>#</th><th>Entrant &amp; pick</th><th style="text-align:right;">Win %</th><th style="text-align:right;">Pts</th></tr></thead>
+        <tbody id="randomLadderBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== DRAW ===================== -->
+  <section id="tab-draw" class="tab-panel">
+    <h2 class="panel-title">Group Stage</h2>
+    <p class="panel-sub">All 72 group matches, grouped A&ndash;L.</p>
+    <div id="drawGroups"></div>
+
+    <h2 class="panel-title" style="margin-top:32px;">Knockout Stage</h2>
+    <p class="panel-sub">Slots show official codes until that group/race is decided &mdash; see README for updating these.</p>
+    <div id="drawKnockout"></div>
+  </section>
+
+  <!-- ===================== ROAD TO 32 ===================== -->
+  <section id="tab-road32" class="tab-panel">
+    <h2 class="panel-title">Road to 32</h2>
+    <p class="panel-sub">Top 2 in each group qualify automatically. The best 8 third-placed teams across all 12 groups join them.</p>
+
+    <div class="stat-strip">
+      <div class="stat-box"><div class="stat-value" id="spotsClinched">0 / 32</div><div class="stat-label">Spots clinched</div></div>
+      <div class="stat-box"><div class="stat-value" id="statQualified">0</div><div class="stat-label">Qualified</div></div>
+      <div class="stat-box"><div class="stat-value" id="statEliminated">0</div><div class="stat-label">Eliminated</div></div>
+      <div class="stat-box"><div class="stat-value" id="groupsDecided">0 / 12</div><div class="stat-label">Groups decided</div></div>
+      <div class="stat-box"><div class="stat-value" id="thirdCutoff">--</div><div class="stat-label">Est. 3rd-place cutoff</div></div>
+    </div>
+
+    <div class="legend">
+      <span><span class="legend-dot qualified"></span>Top 2 &mdash; through</span>
+      <span><span class="legend-dot pending"></span>3rd &mdash; in the best-eight race</span>
+      <span><span class="legend-dot eliminated"></span>4th &mdash; out</span>
+    </div>
+
+    <div class="group-grid" id="groupGrid"></div>
+
+    <h2 class="panel-title">Third-place race &mdash; best 8 advance</h2>
+    <div class="card">
+      <table id="thirdPlaceTable">
+        <thead><tr><th>#</th><th>Team</th><th>Grp</th><th>Pts</th><th>GD</th><th>GF</th><th>Status</th></tr></thead>
+        <tbody id="thirdPlaceBody"></tbody>
+      </table>
+    </div>
+    <p class="panel-sub" style="margin-top:-4px;">"Est. 3rd-place cutoff" above is the simulated average points total of the 8th-best third-placed team &mdash; a rough guide to what's likely needed, not a rule.</p>
+  </section>
+
+  <!-- ===================== RIVALS ===================== -->
+  <section id="tab-rivals" class="tab-panel">
+    <h2 class="panel-title">Rivals</h2>
+    <p class="panel-sub">Select your name to see who has 3 or more picks in common with you.</p>
+    <div class="rivals-controls">
+      <label for="rivalsSelect" style="display:block; font-size:12px; color:var(--muted); margin-bottom:6px;">Your name</label>
+      <select id="rivalsSelect"><option value="">-- select --</option></select>
+    </div>
+    <div id="rivalsOutput"><p class="muted">Select your name to see who has 3 or more picks in common with you.</p></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  Standings reflect completed matches only &mdash; games without a final score aren't counted yet.<br/>
+  Update results in <code>data.js</code> and refresh to update everything else. Not affiliated with FIFA.
+</footer>
+
+<script src="app.js"></script>
+<script src="simulate.js"></script>
+<script src="render.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
