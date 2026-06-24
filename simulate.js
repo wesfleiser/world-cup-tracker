@@ -14,21 +14,21 @@
 const SIM_COUNT = 3000;
 
 // Bookmaker "to win group" American odds — one-time snapshot, NOT auto-updated.
-// Source: FanDuel via CBS Sports, as of June 22, 2026. Re-fetch and replace this
-// table manually as the tournament moves on; it will get stale.
+// Source: FanDuel/DraftKings via Fox Sports and CBS Sports, as of June 24, 2026.
+// Re-fetch and replace this table manually as the tournament moves on; it will get stale.
 const GROUP_WIN_ODDS = {
-  Mexico: -155, "South Korea": 160, Czechia: 1600, "South Africa": 8000,
-  Switzerland: 105, Canada: 165, "Bosnia & Herzegovina": 460, Qatar: 2500,
-  Brazil: -160, Morocco: 175, Scotland: 600, Haiti: 17500,
-  USA: -210, Australia: 310, Turkey: 750, Paraguay: 3000,
-  Germany: -280, "Ivory Coast": 280, Ecuador: 1700, "Curaçao": 50000,
-  Netherlands: 120, Japan: 220, Sweden: 230, Tunisia: 8000,
-  Belgium: -190, Egypt: 250, Iran: 700, "New Zealand": 2200,
-  Spain: -270, Uruguay: 350, "Cape Verde": 1800, "Saudi Arabia": 1800,
-  France: -330, Norway: 290, Senegal: 3500, Iraq: 35000,
-  Argentina: -650, Austria: 500, Algeria: 6500, Jordan: 20000,
-  Portugal: -210, Colombia: 220, "DR Congo": 2000, Uzbekistan: 3000,
-  England: -260, Croatia: 330, Ghana: 1200, Panama: 2700,
+  Mexico: -155, "South Korea": 160, Czechia: 1600, "South Africa": 8000,  // Group A settled (Mexico won)
+  Switzerland: -125, Canada: 300, "Bosnia & Herzegovina": 720, Qatar: 2500,
+  Brazil: -190, Morocco: 155, Scotland: 4000, Haiti: 17500,
+  USA: -210, Australia: 310, Turkey: 750, Paraguay: 3000,                   // Group D settled (USA won)
+  Germany: -280, "Ivory Coast": 280, Ecuador: 1700, "Curaçao": 50000,      // Group E settled (Germany clinched)
+  Netherlands: -380, Japan: 360, Sweden: 2700, Tunisia: 8000,
+  Belgium: 240, Egypt: -175, Iran: 650, "New Zealand": 2200,
+  Spain: -750, Uruguay: 750, "Cape Verde": 3000, "Saudi Arabia": 1800,
+  France: -340, Norway: 290, Senegal: 5000, Iraq: 35000,
+  Argentina: -650, Austria: 500, Algeria: 6500, Jordan: 20000,              // Group J settled (Argentina clinched)
+  Portugal: 115, Colombia: -110, "DR Congo": 1200, Uzbekistan: 12500,
+  England: -1500, Croatia: 4000, Ghana: 1800, Panama: 8000,
 };
 
 function americanToProb(odds) {
