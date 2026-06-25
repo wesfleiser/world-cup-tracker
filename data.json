@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-06-24",
+    "lastUpdated": "2026-06-25",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -148,7 +148,10 @@
       "date": "2026-06-24",
       "team1": "Czechia",
       "team2": "Mexico",
-      "score": null,
+      "score": [
+        0,
+        3
+      ],
       "venue": "Mexico City"
     },
     {
@@ -159,7 +162,10 @@
       "date": "2026-06-24",
       "team1": "South Africa",
       "team2": "South Korea",
-      "score": null,
+      "score": [
+        1,
+        0
+      ],
       "venue": "Monterrey"
     },
     {
@@ -226,7 +232,10 @@
       "date": "2026-06-24",
       "team1": "Switzerland",
       "team2": "Canada",
-      "score": null,
+      "score": [
+        2,
+        1
+      ],
       "venue": "Vancouver"
     },
     {
@@ -237,7 +246,10 @@
       "date": "2026-06-24",
       "team1": "Bosnia & Herzegovina",
       "team2": "Qatar",
-      "score": null,
+      "score": [
+        3,
+        1
+      ],
       "venue": "Seattle"
     },
     {
@@ -304,7 +316,10 @@
       "date": "2026-06-24",
       "team1": "Scotland",
       "team2": "Brazil",
-      "score": null,
+      "score": [
+        0,
+        3
+      ],
       "venue": "Miami"
     },
     {
@@ -315,7 +330,10 @@
       "date": "2026-06-24",
       "team1": "Morocco",
       "team2": "Haiti",
-      "score": null,
+      "score": [
+        4,
+        2
+      ],
       "venue": "Atlanta"
     },
     {
