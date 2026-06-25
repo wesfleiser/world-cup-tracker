@@ -13,42 +13,46 @@
 
 const SIM_COUNT = 3000;
 
-// Bookmaker odds — one-time snapshot, NOT auto-updated. Two markets, both
-// FanDuel, via CBS Sports / FOX Sports:
+// Bookmaker odds — one-time snapshot, NOT auto-updated. Two markets,
+// DraftKings / FanDuel, via CBS Sports / ESPN:
 //   OUTRIGHT_WIN_ODDS  — "to win the World Cup" (the primary signal: this is
 //                         the one number that reflects a team's expected
 //                         value across every remaining stage, which lines up
 //                         with how the comp scores +2 per stage survived).
-//                         As of June 21, 2026. Teams with no individual price
-//                         published (effectively already-eliminated/non-
-//                         contenders) default to the longest price on the
-//                         board (250000).
+//                         As of June 25, 2026. Eliminated teams and teams
+//                         with no individual price default to the board's
+//                         longest price (250000).
 //   ADVANCE_ODDS       — "to advance from the group" (a same-day nudge for
 //                         whichever teams are still genuinely contested —
 //                         already-clinched or already-eliminated teams
 //                         aren't priced, so this table is intentionally
-//                         partial). As of June 23, 2026.
+//                         partial). As of June 25, 2026.
 // Re-fetch and replace these manually as the tournament moves on; they will
 // get stale, fastest for ADVANCE_ODDS since it only covers the group stage.
 const OUTRIGHT_WIN_ODDS = {
-  France: 370, Spain: 500, England: 600, Argentina: 800, Portugal: 1000,
-  Brazil: 1100, Germany: 1300, Netherlands: 1600, Norway: 3000, Morocco: 3300,
-  USA: 3500, Belgium: 4000, Colombia: 4000, Japan: 4500, Mexico: 5000,
-  Uruguay: 7500, Croatia: 8000, Switzerland: 8000, Australia: 12500, Austria: 12500,
-  Senegal: 12500, "Ivory Coast": 17500, Sweden: 17500, Canada: 25000, Egypt: 30000,
-  Ghana: 30000, Algeria: 35000, Paraguay: 35000, "South Korea": 35000, Ecuador: 40000,
-  Scotland: 40000, "Bosnia & Herzegovina": 60000, Iran: 150000, "Cape Verde": 250000,
-  "DR Congo": 250000, "Curaçao": 250000, Czechia: 250000, Iraq: 250000, Jordan: 250000,
-  "New Zealand": 250000, Panama: 250000, Qatar: 250000, "Saudi Arabia": 250000,
-  "South Africa": 250000, Uzbekistan: 250000,
-  // not individually priced -> treated as longshots, same as the board's floor
-  Haiti: 250000, Turkey: 250000, Tunisia: 250000,
+  France: 400, Spain: 500, England: 650, Argentina: 750, Portugal: 900,
+  Brazil: 1000, Germany: 1400, Netherlands: 1700, Norway: 2800, USA: 2800,
+  Uruguay: 2800, Morocco: 3000, Colombia: 4000, Japan: 4500, Mexico: 4500,
+  Belgium: 5000, Switzerland: 6500, Ghana: 6000, Croatia: 8000, Ecuador: 10000,
+  Australia: 12500, Austria: 12500, Sweden: 12500, Paraguay: 12500, Canada: 17500,
+  "Ivory Coast": 17500, "South Korea": 20000, Egypt: 25000, Algeria: 35000,
+  Iran: 50000, Czechia: 50000, "New Zealand": 50000,
+  // eliminated or not individually priced → floor
+  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000, "DR Congo": 250000,
+  "Curaçao": 250000, Haiti: 250000, Iraq: 250000, Jordan: 250000,
+  Panama: 250000, Qatar: 250000, "Saudi Arabia": 250000, Scotland: 250000,
+  Senegal: 250000, "South Africa": 250000, Tunisia: 250000, Turkey: 250000,
+  Uzbekistan: 250000,
 };
 const ADVANCE_ODDS = {
-  Ghana: -400, Croatia: -400, Senegal: -250, "Cape Verde": -230, Iran: -165,
-  "DR Congo": 100, Uruguay: 120, "Saudi Arabia": 175, Uzbekistan: 180, Czechia: 200,
-  Ecuador: 300, "South Africa": 450, Panama: 600, "New Zealand": 1100, Iraq: 1200,
-  "Curaçao": 1400,
+  // Group E (final June 25): Germany clinched 1st; Ecuador and Ivory Coast racing for 2nd
+  Ecuador: 200,
+  // Group G (final June 26): all four teams still in contention
+  Egypt: -350, Belgium: -500, Iran: 700, "New Zealand": 1100,
+  // Group H (final June 26): Spain near-clinched; three-way contest for 2nd
+  "Cape Verde": -200, Uruguay: 400, "Saudi Arabia": 300,
+  // Group L (final June 27): England near-clinched; Croatia vs Ghana for 2nd spot
+  Ghana: -300, Croatia: -600,
 };
 
 function americanToProb(odds) {
