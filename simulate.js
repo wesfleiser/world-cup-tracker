@@ -14,7 +14,7 @@
 const SIM_COUNT = 3000;
 
 // Bookmaker odds — one-time snapshot, NOT auto-updated. Two markets,
-// DraftKings / FanDuel, via CBS Sports / ESPN:
+// FanDuel / DraftKings, via Fox Sports / ESPN / CBS Sports:
 //   OUTRIGHT_WIN_ODDS  — "to win the World Cup" (the primary signal: this is
 //                         the one number that reflects a team's expected
 //                         value across every remaining stage, which lines up
@@ -30,12 +30,12 @@ const SIM_COUNT = 3000;
 // Re-fetch and replace these manually as the tournament moves on; they will
 // get stale, fastest for ADVANCE_ODDS since it only covers the group stage.
 const OUTRIGHT_WIN_ODDS = {
-  France: 400, Spain: 500, England: 650, Argentina: 750, Portugal: 900,
-  Brazil: 1000, Germany: 1400, Netherlands: 1700, Norway: 2800, USA: 2800,
-  Uruguay: 2800, Morocco: 3000, Colombia: 4000, Japan: 4500, Mexico: 4500,
-  Belgium: 5000, Switzerland: 6500, Ghana: 6000, Croatia: 8000, Ecuador: 10000,
-  Australia: 12500, Austria: 12500, Sweden: 12500, Paraguay: 12500, Canada: 17500,
-  "Ivory Coast": 17500, "South Korea": 20000, Egypt: 25000, Algeria: 35000,
+  France: 360, Spain: 550, England: 600, Argentina: 650, Portugal: 950,
+  Brazil: 1300, Germany: 1300, Netherlands: 1700, Norway: 3000, USA: 3000,
+  Uruguay: 6600, Morocco: 3500, Colombia: 4000, Japan: 4500, Mexico: 4500,
+  Belgium: 3300, Switzerland: 6500, Ghana: 50000, Croatia: 8000, Ecuador: 10000,
+  Australia: 12500, Austria: 15000, Sweden: 8000, Paraguay: 12500, Canada: 15000,
+  "Ivory Coast": 10000, "South Korea": 20000, Egypt: 25000, Algeria: 35000,
   Iran: 50000, Czechia: 50000, "New Zealand": 50000,
   // eliminated or not individually priced → floor
   "Bosnia & Herzegovina": 250000, "Cape Verde": 250000, "DR Congo": 250000,
@@ -47,12 +47,12 @@ const OUTRIGHT_WIN_ODDS = {
 const ADVANCE_ODDS = {
   // Group E (final June 25): Germany clinched 1st; Ecuador and Ivory Coast racing for 2nd
   Ecuador: 200,
-  // Group G (final June 26): all four teams still in contention
-  Egypt: -350, Belgium: -500, Iran: 700, "New Zealand": 1100,
+  // Group G (final June 26): Egypt leads (4 pts); Iran 2nd ahead of Belgium on GF; NZ nearly out
+  Egypt: -400, Belgium: -350, Iran: 500, "New Zealand": 1400,
   // Group H (final June 26): Spain near-clinched; three-way contest for 2nd
   "Cape Verde": -200, Uruguay: 400, "Saudi Arabia": 300,
-  // Group L (final June 27): England near-clinched; Croatia vs Ghana for 2nd spot
-  Ghana: -300, Croatia: -600,
+  // Group L (final June 27): England near-clinched; Ghana and Croatia level for 2nd
+  Ghana: -400, Croatia: -400,
 };
 
 function americanToProb(odds) {
