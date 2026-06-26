@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-06-25",
+    "lastUpdated": "2026-06-26",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -478,7 +478,10 @@
       "date": "2026-06-25",
       "team1": "Curaçao",
       "team2": "Ivory Coast",
-      "score": null,
+      "score": [
+        0,
+        2
+      ],
       "venue": "Philadelphia"
     },
     {
@@ -489,7 +492,10 @@
       "date": "2026-06-25",
       "team1": "Ecuador",
       "team2": "Germany",
-      "score": null,
+      "score": [
+        2,
+        1
+      ],
       "venue": "East Rutherford"
     },
     {
@@ -556,7 +562,10 @@
       "date": "2026-06-25",
       "team1": "Japan",
       "team2": "Sweden",
-      "score": null,
+      "score": [
+        1,
+        1
+      ],
       "venue": "Arlington"
     },
     {
@@ -567,7 +576,10 @@
       "date": "2026-06-25",
       "team1": "Tunisia",
       "team2": "Netherlands",
-      "score": null,
+      "score": [
+        1,
+        3
+      ],
       "venue": "Kansas City"
     },
     {
