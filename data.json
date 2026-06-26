@@ -1078,7 +1078,7 @@
       "num": 75,
       "round": "R32",
       "date": "2026-06-29",
-      "team1": "1F",
+      "team1": "Netherlands",
       "team2": "Morocco",
       "score": null,
       "venue": "Monterrey"
@@ -1088,7 +1088,7 @@
       "round": "R32",
       "date": "2026-06-29",
       "team1": "Brazil",
-      "team2": "2F",
+      "team2": "Japan",
       "score": null,
       "venue": "Houston"
     },
@@ -1105,7 +1105,7 @@
       "num": 78,
       "round": "R32",
       "date": "2026-06-30",
-      "team1": "2E",
+      "team1": "Ivory Coast",
       "team2": "2I",
       "score": null,
       "venue": "Arlington"
@@ -1195,7 +1195,7 @@
       "num": 88,
       "round": "R32",
       "date": "2026-07-03",
-      "team1": "2D",
+      "team1": "Australia",
       "team2": "2G",
       "score": null,
       "venue": "Arlington"
