@@ -1,4 +1,4 @@
-* ============================================================
+/* ============================================================
    WIN-ODDS SIMULATOR
    Monte Carlo estimate of each entrant's chance of winning the
    competition, based on a simple Poisson goal model built from
