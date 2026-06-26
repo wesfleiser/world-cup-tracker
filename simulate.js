@@ -1,4 +1,4 @@
-/* ============================================================
+* ============================================================
    WIN-ODDS SIMULATOR
    Monte Carlo estimate of each entrant's chance of winning the
    competition, based on a simple Poisson goal model built from
@@ -10,43 +10,61 @@
    the simulated future is judged by the exact same rules as
    the real ladder.
    ============================================================ */
-
+ 
 const SIM_COUNT = 3000;
-
+ 
 // Bookmaker odds — one-time snapshot, NOT auto-updated. Two markets,
-// DraftKings / FanDuel, via CBS Sports / ESPN:
+// FanDuel (primary) / BetMGM (fill-in for teams not priced individually):
 //   OUTRIGHT_WIN_ODDS  — "to win the World Cup" (the primary signal: this is
 //                         the one number that reflects a team's expected
 //                         value across every remaining stage, which lines up
 //                         with how the comp scores +2 per stage survived).
-//                         As of June 25, 2026. Eliminated teams and teams
-//                         with no individual price default to the board's
-//                         longest price (250000).
+//                         As of June 25, 2026. Sources: FanDuel (top teams),
+//                         BetMGM June 22 (mid-tier fill-in). Eliminated teams
+//                         and teams with no individual price default to the
+//                         board's longest price (250000).
 //   ADVANCE_ODDS       — "to advance from the group" (a same-day nudge for
 //                         whichever teams are still genuinely contested —
 //                         already-clinched or already-eliminated teams
 //                         aren't priced, so this table is intentionally
-//                         partial). As of June 25, 2026.
+//                         partial). As of June 25, 2026 (FanDuel / FOX Sports).
 // Re-fetch and replace these manually as the tournament moves on; they will
 // get stale, fastest for ADVANCE_ODDS since it only covers the group stage.
 const OUTRIGHT_WIN_ODDS = {
-  France: 400, Spain: 500, England: 650, Argentina: 750, Portugal: 900,
-  Brazil: 1000, Germany: 1400, Netherlands: 1700, Norway: 2800, USA: 2800,
-  Uruguay: 2800, Morocco: 3000, Colombia: 4000, Japan: 4500, Mexico: 4500,
-  Belgium: 5000, Switzerland: 6500, Ghana: 6000, Croatia: 8000, Ecuador: 10000,
+  // FanDuel, June 25 2026
+  France: 460, Spain: 490, England: 600, Argentina: 650, Portugal: 1000,
+  Brazil: 1300,
+  // BetMGM June 22 fill-in (FanDuel similar)
+  Germany: 1300, Netherlands: 1500,
+  // BetMGM June 22 — USA/Norway/Morocco/Uruguay all in same tier
+  Norway: 2800, USA: 2800, Uruguay: 2800, Morocco: 2800,
+  Colombia: 4000, Japan: 4500,
+  // Mexico jumped +4500 → +3500 after 3-0 win over Czechia (FanDuel June 25)
+  Mexico: 3500,
+  Belgium: 5000,
+  // Switzerland tightened after winning Group B convincingly
+  Switzerland: 5000,
+  Ghana: 6000, Croatia: 8000, Ecuador: 10000,
   Australia: 12500, Austria: 12500, Sweden: 12500, Paraguay: 12500, Canada: 17500,
   "Ivory Coast": 17500, "South Korea": 20000, Egypt: 25000, Algeria: 35000,
-  Iran: 50000, Czechia: 50000, "New Zealand": 50000,
+  Iran: 50000, "New Zealand": 50000,
   // eliminated or not individually priced → floor
-  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000, "DR Congo": 250000,
-  "Curaçao": 250000, Haiti: 250000, Iraq: 250000, Jordan: 250000,
+  // Czechia: confirmed eliminated (4th in Group A, June 24)
+  // South Africa, Canada, Brazil, Morocco, Switzerland: all qualified but no outright price listed
+  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000, Czechia: 250000,
+  "DR Congo": 250000, "Curaçao": 250000, Haiti: 250000, Iraq: 250000, Jordan: 250000,
   Panama: 250000, Qatar: 250000, "Saudi Arabia": 250000, Scotland: 250000,
   Senegal: 250000, "South Africa": 250000, Tunisia: 250000, Turkey: 250000,
   Uzbekistan: 250000,
 };
 const ADVANCE_ODDS = {
-  // Group E (final June 25): Germany clinched 1st; Ecuador and Ivory Coast racing for 2nd
+  // Group D (final June 25): USA clinched 1st, Turkey eliminated.
+  // Australia (3pts, GD+2) vs Paraguay (3pts, GD-3) for 2nd.
+  Australia: -300, Paraguay: 230,
+  // Group E (final June 25): Germany clinched 1st; Ecuador and Ivory Coast racing for 2nd.
   Ecuador: 200,
+  // Group F (final June 25): Netherlands clinched; Japan (4pts) vs Sweden (3pts) for 2nd.
+  Japan: -220, Sweden: 175,
   // Group G (final June 26): all four teams still in contention
   Egypt: -350, Belgium: -500, Iran: 700, "New Zealand": 1100,
   // Group H (final June 26): Spain near-clinched; three-way contest for 2nd
@@ -54,11 +72,11 @@ const ADVANCE_ODDS = {
   // Group L (final June 27): England near-clinched; Croatia vs Ghana for 2nd spot
   Ghana: -300, Croatia: -600,
 };
-
+ 
 function americanToProb(odds) {
   return odds < 0 ? -odds / (-odds + 100) : 100 / (odds + 100);
 }
-
+ 
 // De-vig across the full 48-team outright field (this is one closed market,
 // so probabilities should sum to 1; bookmaker margin means the raw sum is
 // higher), then scale so the average team sits at a multiplier of 1.0.
@@ -87,7 +105,7 @@ function marketMultipliers() {
   });
   return mult;
 }
-
+ 
 function poissonRandom(lambda) {
   const L = Math.exp(-lambda);
   let k = 0,
@@ -98,7 +116,7 @@ function poissonRandom(lambda) {
   } while (p > L);
   return k - 1;
 }
-
+ 
 function buildStrengthModel() {
   const stats = {};
   Object.values(GROUPS)
@@ -145,7 +163,7 @@ function buildStrengthModel() {
   });
   return { strengths, leagueAvg };
 }
-
+ 
 function simScore(teamA, teamB, model) {
   const { strengths, leagueAvg } = model;
   const a = strengths[teamA] || { attack: leagueAvg, defense: leagueAvg };
@@ -155,7 +173,7 @@ function simScore(teamA, teamB, model) {
   const expB = clamp((b.attack / leagueAvg) * (a.defense / leagueAvg) * leagueAvg);
   return [poissonRandom(expA), poissonRandom(expB)];
 }
-
+ 
 function simGroupStandings(letter, simMatches) {
   const teams = GROUPS[letter];
   const table = {};
@@ -193,7 +211,7 @@ function simGroupStandings(letter, simMatches) {
   );
   return { rows, decided: true };
 }
-
+ 
 function simThirdPlaceRace(standings) {
   const rows = [];
   Object.entries(standings).forEach(([letter, data]) => {
@@ -203,7 +221,7 @@ function simThirdPlaceRace(standings) {
   rows.forEach((r, i) => (r.rank = i + 1));
   return rows;
 }
-
+ 
 function simKnockout(standings, top8Teams, model) {
   // Note: which exact third-place team lands in which bracket slot is governed by a
   // fixed FIFA permutation table we don't replicate here — we just assign the 8
@@ -214,7 +232,7 @@ function simKnockout(standings, top8Teams, model) {
     .map((m) => m.num)
     .sort((a, b) => a - b);
   poolNums.forEach((num, i) => (overrides[num] = top8Teams[i]));
-
+ 
   const resolved = {};
   const koMatches = MATCHES.filter((m) => m.num >= 73).sort((a, b) => a.num - b.num);
   koMatches.forEach((m) => {
@@ -242,7 +260,7 @@ function simKnockout(standings, top8Teams, model) {
   });
   return Object.values(resolved);
 }
-
+ 
 function runOneSimulation(model) {
   const simGroupMatches = MATCHES.filter((m) => m.round === "Group").map((m) => {
     if (m.score) return m;
@@ -255,7 +273,7 @@ function runOneSimulation(model) {
   const bracket = simKnockout(standings, top8, model);
   return { standings, thirdRace, allDecided: true, bracket };
 }
-
+ 
 function computeWinOdds() {
   const model = buildStrengthModel();
   const mainWins = {};
@@ -264,7 +282,7 @@ function computeWinOdds() {
   ENTRANTS.forEach((e) => (randomWins[e.name] = 0));
   let cutoffPtsSum = 0,
     cutoffGdSum = 0;
-
+ 
   for (let i = 0; i < SIM_COUNT; i++) {
     const ctx = runOneSimulation(model);
     const eighth = ctx.thirdRace[7]; // rank 8 -> index 7, the qualification cutoff line
@@ -291,7 +309,7 @@ function computeWinOdds() {
     bestMainNames.forEach((n) => (mainWins[n] += 1 / bestMainNames.length));
     bestRandomNames.forEach((n) => (randomWins[n] += 1 / bestRandomNames.length));
   }
-
+ 
   const mainOdds = {},
     randomOdds = {};
   ENTRANTS.forEach((e) => {
@@ -304,3 +322,4 @@ function computeWinOdds() {
     expectedThirdCutoff: { pts: cutoffPtsSum / SIM_COUNT, gd: cutoffGdSum / SIM_COUNT },
   };
 }
+ 
