@@ -19,38 +19,33 @@ const SIM_COUNT = 3000;
 //                         the one number that reflects a team's expected
 //                         value across every remaining stage, which lines up
 //                         with how the comp scores +2 per stage survived).
-//                         As of June 25, 2026. Sources: FanDuel (top teams),
-//                         BetMGM June 22 (mid-tier fill-in). Eliminated teams
+//                         As of June 26, 2026. Sources: FanDuel/ESPN/DraftKings
+//                         (top teams), BetMGM (mid-tier fill-in). Eliminated teams
 //                         and teams with no individual price default to the
 //                         board's longest price (250000).
 //   ADVANCE_ODDS       — "to advance from the group" (a same-day nudge for
 //                         whichever teams are still genuinely contested —
 //                         already-clinched or already-eliminated teams
 //                         aren't priced, so this table is intentionally
-//                         partial). As of June 25, 2026 (FanDuel / FOX Sports).
+//                         partial). As of June 26, 2026 (FanDuel/ESPN).
 // Re-fetch and replace these manually as the tournament moves on; they will
 // get stale, fastest for ADVANCE_ODDS since it only covers the group stage.
 const OUTRIGHT_WIN_ODDS = {
-  // FanDuel, June 25 2026
-  France: 460, Spain: 490, England: 600, Argentina: 650, Portugal: 1000,
+  // FanDuel/ESPN/DraftKings, June 26 2026
+  France: 400, Spain: 490, England: 600, Argentina: 620, Portugal: 1000,
   Brazil: 1300,
-  // BetMGM June 22 fill-in (FanDuel similar)
   Germany: 1300, Netherlands: 1500,
-  // BetMGM June 22 — USA/Norway/Morocco/Uruguay all in same tier
-  Norway: 2800, USA: 2800, Uruguay: 2800, Morocco: 2800,
-  Colombia: 4000, Japan: 4500,
-  // Mexico jumped +4500 → +3500 after 3-0 win over Czechia (FanDuel June 25)
+  Norway: 3300, USA: 2800, Uruguay: 6600, Morocco: 4000,
+  Colombia: 5000, Japan: 4500,
   Mexico: 3500,
-  Belgium: 5000,
-  // Switzerland tightened after winning Group B convincingly
-  Switzerland: 5000,
+  Belgium: 5500,
+  Switzerland: 7500,
   Ghana: 6000, Croatia: 8000, Ecuador: 10000,
-  Australia: 12500, Austria: 12500, Sweden: 12500, Paraguay: 12500, Canada: 17500,
+  Australia: 8000, Austria: 12500, Sweden: 12500, Paraguay: 12500, Canada: 17500,
   "Ivory Coast": 17500, "South Korea": 20000, Egypt: 25000, Algeria: 35000,
   Iran: 50000, "New Zealand": 50000,
   // eliminated or not individually priced → floor
   // Czechia: confirmed eliminated (4th in Group A, June 24)
-  // South Africa, Canada, Brazil, Morocco, Switzerland: all qualified but no outright price listed
   "Bosnia & Herzegovina": 250000, "Cape Verde": 250000, Czechia: 250000,
   "DR Congo": 250000, "Curaçao": 250000, Haiti: 250000, Iraq: 250000, Jordan: 250000,
   Panama: 250000, Qatar: 250000, "Saudi Arabia": 250000, Scotland: 250000,
@@ -58,18 +53,14 @@ const OUTRIGHT_WIN_ODDS = {
   Uzbekistan: 250000,
 };
 const ADVANCE_ODDS = {
-  // Group D (final June 25): USA clinched 1st, Turkey eliminated.
-  // Australia (3pts, GD+2) vs Paraguay (3pts, GD-3) for 2nd.
-  Australia: -300, Paraguay: 230,
-  // Group E (final June 25): Germany clinched 1st; Ecuador and Ivory Coast racing for 2nd.
-  Ecuador: 200,
-  // Group F (final June 25): Netherlands clinched; Japan (4pts) vs Sweden (3pts) for 2nd.
-  Japan: -220, Sweden: 175,
-  // Group G (final June 26): all four teams still in contention
+  // Groups D/E/F decided June 25 — those teams removed.
+  // Group G (final June 26): Egypt leads (4pts); Belgium vs Iran tied at 2pts each for 2nd.
+  // Egypt plays Iran; New Zealand plays Belgium.
   Egypt: -350, Belgium: -500, Iran: 700, "New Zealand": 1100,
-  // Group H (final June 26): Spain near-clinched; three-way contest for 2nd
-  "Cape Verde": -200, Uruguay: 400, "Saudi Arabia": 300,
-  // Group L (final June 27): England near-clinched; Croatia vs Ghana for 2nd spot
+  // Group H (final June 26): Spain near-clinched (4pts); Uruguay vs Cape Verde tied at 2pts.
+  // Cape Verde plays Saudi Arabia; Uruguay plays Spain.
+  "Cape Verde": -230, Uruguay: 120, "Saudi Arabia": 170,
+  // Group L (final June 27): England near-clinched; Croatia vs Ghana for 2nd spot.
   Ghana: -300, Croatia: -600,
 };
  
