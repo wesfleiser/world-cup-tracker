@@ -90,7 +90,6 @@ const OUTRIGHT_WIN_ODDS = {
   Scotland: 250000,
   Senegal: 250000,
   "Saudi Arabia": 250000,
-  "Bosnia & Herzegovina": 250000,
   "DR Congo": 250000,
   "Curaçao": 250000,
    "New Zealand": 250000,
