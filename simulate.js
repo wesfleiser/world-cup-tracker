@@ -71,7 +71,13 @@ const OUTRIGHT_WIN_ODDS = {
 
   Algeria: 35000,
   Iran: 50000,
- // Eliminated / effectively no chance
+   "South Africa": 50000,
+   "Cape Verde": 250000,
+   "Bosnia & Herzegovina": 250000,
+   Uzbekistan: 250000,
+   "DR Congo": 250000,
+   
+ // Eliminated 
   Uruguay: 250000,
   Turkey: 250000,
   Tunisia: 250000,
@@ -84,13 +90,10 @@ const OUTRIGHT_WIN_ODDS = {
   Scotland: 250000,
   Senegal: 250000,
   "Saudi Arabia": 250000,
-  "South Africa": 250000,
-  "Cape Verde": 250000,
   "Bosnia & Herzegovina": 250000,
   "DR Congo": 250000,
   "Curaçao": 250000,
-   "New Zealand": 50000,
-  Uzbekistan: 250000,
+   "New Zealand": 250000,
 };
 const ADVANCE_ODDS = {
 
