@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-06-26",
+    "lastUpdated": "2026-06-27",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -652,7 +652,10 @@
       "date": "2026-06-26",
       "team1": "Egypt",
       "team2": "Iran",
-      "score": null,
+      "score": [
+        1,
+        1
+      ],
       "venue": "Seattle"
     },
     {
@@ -663,7 +666,10 @@
       "date": "2026-06-26",
       "team1": "New Zealand",
       "team2": "Belgium",
-      "score": null,
+      "score": [
+        1,
+        5
+      ],
       "venue": "Vancouver"
     },
     {
@@ -730,7 +736,10 @@
       "date": "2026-06-26",
       "team1": "Cape Verde",
       "team2": "Saudi Arabia",
-      "score": null,
+      "score": [
+        0,
+        0
+      ],
       "venue": "Houston"
     },
     {
@@ -741,7 +750,10 @@
       "date": "2026-06-26",
       "team1": "Uruguay",
       "team2": "Spain",
-      "score": null,
+      "score": [
+        0,
+        1
+      ],
       "venue": "Guadalajara"
     },
     {
@@ -808,7 +820,10 @@
       "date": "2026-06-26",
       "team1": "Norway",
       "team2": "France",
-      "score": null,
+      "score": [
+        1,
+        4
+      ],
       "venue": "Foxborough"
     },
     {
@@ -819,7 +834,10 @@
       "date": "2026-06-26",
       "team1": "Senegal",
       "team2": "Iraq",
-      "score": null,
+      "score": [
+        5,
+        0
+      ],
       "venue": "Toronto"
     },
     {
