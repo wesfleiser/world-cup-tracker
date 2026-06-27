@@ -10,9 +10,9 @@
    the simulated future is judged by the exact same rules as
    the real ladder.
    ============================================================ */
- 
+
 const SIM_COUNT = 3000;
- 
+
 // Bookmaker odds — one-time snapshot, NOT auto-updated. Two markets,
 // FanDuel (primary) / BetMGM (fill-in for teams not priced individually):
 //   OUTRIGHT_WIN_ODDS  — "to win the World Cup" (the primary signal: this is
@@ -71,13 +71,13 @@ const OUTRIGHT_WIN_ODDS = {
 
   Algeria: 35000,
   Iran: 50000,
-   "South Africa": 50000,
-   "Cape Verde": 250000,
-   "Bosnia & Herzegovina": 250000,
-   Uzbekistan: 250000,
-   "DR Congo": 250000,
+  "South Africa": 50000,
+  "Cape Verde": 250000,
+  "Bosnia & Herzegovina": 250000,
+  Uzbekistan: 250000,
+  "DR Congo": 250000, // Kept active here as it's still alive in ADVANCE_ODDS Group K
    
- // Eliminated 
+  // Eliminated 
   Uruguay: 250000,
   Turkey: 250000,
   Tunisia: 250000,
@@ -90,12 +90,11 @@ const OUTRIGHT_WIN_ODDS = {
   Scotland: 250000,
   Senegal: 250000,
   "Saudi Arabia": 250000,
-  "DR Congo": 250000,
   "Curaçao": 250000,
-   "New Zealand": 250000,
+  "New Zealand": 250000,
 };
-const ADVANCE_ODDS = {
 
+const ADVANCE_ODDS = {
   // Group J
   Austria: -170,
   Algeria: 140,
@@ -261,39 +260,49 @@ function simThirdPlaceRace(standings) {
 function simKnockout(standings, top8Teams, model) {
   // Note: which exact third-place team lands in which bracket slot is governed by a
   // fixed FIFA permutation table we don't replicate here — we just assign the 8
-  // qualifiers to the open slots in a deterministic order. This doesn't bias which
-  // *entrant* tends to win, just glosses over the precise placement.
-  const overrides = {};
-  const poolNums = MATCHES.filter((m) => m.num >= 73 && (/^3[A-L]/.test(m.team1) || /^3[A-L]/.test(m.team2)))
-    .map((m) => m.num)
-    .sort((a, b) => a - b);
-  poolNums.forEach((num, i) => (overrides[num] = top8Teams[i]));
- 
+  // qualifiers to the open slots in a deterministic order.
+  
+  // Clone top8Teams array so we can shift/consume items sequentially
+  const teamsPool = [...top8Teams];
   const resolved = {};
   const koMatches = MATCHES.filter((m) => m.num >= 73).sort((a, b) => a.num - b.num);
+
   koMatches.forEach((m) => {
-    let code1 = m.team1,
-      code2 = m.team2;
-    if (overrides.hasOwnProperty(m.num)) {
-      if (/^3[A-L]/.test(code1)) code1 = overrides[m.num];
-      if (/^3[A-L]/.test(code2)) code2 = overrides[m.num];
+    let code1 = m.team1, code2 = m.team2;
+
+    // Sequentially assign a unique third place team whenever a 3A-3L placeholder is met
+    if (/^3[A-L]/.test(code1)) {
+      code1 = teamsPool.shift() || code1;
     }
+    if (/^3[A-L]/.test(code2)) {
+      code2 = teamsPool.shift() || code2;
+    }
+
     const team1 = resolveCode(code1, standings, resolved);
     const team2 = resolveCode(code2, standings, resolved);
-    let score = m.score,
-      wonOnPens = m.wonOnPens,
-      winner = null;
+    let score = m.score, wonOnPens = m.wonOnPens, winner = null;
+
     if (!score && team1 && team2) {
       score = simScore(team1, team2, model);
       if (score[0] === score[1]) wonOnPens = Math.random() < 0.5 ? "team1" : "team2";
     }
+
     if (score && team1 && team2) {
       if (wonOnPens) winner = wonOnPens === "team1" ? team1 : team2;
       else if (score[0] > score[1]) winner = team1;
       else if (score[1] > score[0]) winner = team2;
     }
-    resolved[m.num] = { ...m, team1: team1 || code1, team2: team2 || code2, score, wonOnPens, winner };
+
+    resolved[m.num] = {
+      ...m,
+      team1: team1 || code1,
+      team2: team2 || code2,
+      score,
+      wonOnPens,
+      winner
+    };
   });
+
   return Object.values(resolved);
 }
  
@@ -316,9 +325,8 @@ function computeWinOdds() {
   ENTRANTS.forEach((e) => (mainWins[e.name] = 0));
   const randomWins = {};
   ENTRANTS.forEach((e) => (randomWins[e.name] = 0));
-  let cutoffPtsSum = 0,
-    cutoffGdSum = 0;
- 
+  let cutoffPtsSum = 0, cutoffGdSum = 0;
+
   for (let i = 0; i < SIM_COUNT; i++) {
     const ctx = runOneSimulation(model);
     const eighth = ctx.thirdRace[7]; // rank 8 -> index 7, the qualification cutoff line
@@ -326,36 +334,39 @@ function computeWinOdds() {
       cutoffPtsSum += eighth.pts;
       cutoffGdSum += eighth.gd;
     }
-    let bestMain = -1,
-      bestMainNames = [];
-    let bestRandom = -1,
-      bestRandomNames = [];
+    let bestMain = -1, bestMainNames = [];
+    let bestRandom = -1, bestRandomNames = [];
+
     ENTRANTS.forEach((e) => {
       const score = computeEntrantScore(e, ctx);
       if (score.total > bestMain) {
         bestMain = score.total;
         bestMainNames = [e.name];
       } else if (score.total === bestMain) bestMainNames.push(e.name);
+
       const rp = score.randomDetail.points;
       if (rp > bestRandom) {
         bestRandom = rp;
         bestRandomNames = [e.name];
       } else if (rp === bestRandom) bestRandomNames.push(e.name);
     });
+
     bestMainNames.forEach((n) => (mainWins[n] += 1 / bestMainNames.length));
     bestRandomNames.forEach((n) => (randomWins[n] += 1 / bestRandomNames.length));
   }
- 
-  const mainOdds = {},
-    randomOdds = {};
+
+  const mainOdds = {}, randomOdds = {};
   ENTRANTS.forEach((e) => {
     mainOdds[e.name] = mainWins[e.name] / SIM_COUNT;
     randomOdds[e.name] = randomWins[e.name] / SIM_COUNT;
   });
+
   return {
     mainOdds,
     randomOdds,
-    expectedThirdCutoff: { pts: cutoffPtsSum / SIM_COUNT, gd: cutoffGdSum / SIM_COUNT },
+    expectedThirdCutoff: {
+      pts: cutoffPtsSum / SIM_COUNT,
+      gd: cutoffGdSum / SIM_COUNT
+    },
   };
 }
- 
