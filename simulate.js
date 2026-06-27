@@ -30,47 +30,81 @@ const SIM_COUNT = 3000;
 //                         partial). As of June 25, 2026 (FanDuel / FOX Sports).
 // Re-fetch and replace these manually as the tournament moves on; they will
 // get stale, fastest for ADVANCE_ODDS since it only covers the group stage.
+// // Bookmaker odds updated June 27, 2026.
+// Sources: ESPN Betting, FanDuel, TalkSport and live World Cup markets.
+// Eliminated teams default to +250000.
+//
+// ADVANCE_ODDS now only contains groups that have not yet finished.
+// Completed groups rely solely on OUTRIGHT_WIN_ODDS.
+
 const OUTRIGHT_WIN_ODDS = {
-  // FanDuel, June 25 2026
-  France: 460, Spain: 490, England: 600, Argentina: 650, Portugal: 1000,
-  Brazil: 1300,
-  // BetMGM June 22 fill-in (FanDuel similar)
-  Germany: 1300, Netherlands: 1500,
-  // BetMGM June 22 — USA/Norway/Morocco/Uruguay all in same tier
-  Norway: 2800, USA: 2800, Uruguay: 2800, Morocco: 2800,
-  Colombia: 4000, Japan: 4500,
-  // Mexico jumped +4500 → +3500 after 3-0 win over Czechia (FanDuel June 25)
-  Mexico: 3500,
+  France: 400,
+  Spain: 550,
+  England: 650,
+  Argentina: 650,
+  Portugal: 1000,
+  Brazil: 1100,
+
+  Germany: 1300,
+  Netherlands: 1700,
+
   Belgium: 5000,
-  // Switzerland tightened after winning Group B convincingly
-  Switzerland: 5000,
-  Ghana: 6000, Croatia: 8000, Ecuador: 10000,
-  Australia: 12500, Austria: 12500, Sweden: 12500, Paraguay: 12500, Canada: 17500,
-  "Ivory Coast": 17500, "South Korea": 20000, Egypt: 25000, Algeria: 35000,
-  Iran: 50000, "New Zealand": 50000,
-  // eliminated or not individually priced → floor
-  // Czechia: confirmed eliminated (4th in Group A, June 24)
-  // South Africa, Canada, Brazil, Morocco, Switzerland: all qualified but no outright price listed
-  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000, Czechia: 250000,
-  "DR Congo": 250000, "Curaçao": 250000, Haiti: 250000, Iraq: 250000, Jordan: 250000,
-  Panama: 250000, Qatar: 250000, "Saudi Arabia": 250000, Scotland: 250000,
-  Senegal: 250000, "South Africa": 250000, Tunisia: 250000, Turkey: 250000,
+  Colombia: 4000,
+  Morocco: 3000,
+  Norway: 3300,
+  USA: 3500,
+  Mexico: 4000,
+  Japan: 5000,
+  Switzerland: 10000,
+
+  Croatia: 8000,
+  Ghana: 8000,
+  Ecuador: 10000,
+
+  Australia: 15000,
+  Austria: 15000,
+  Sweden: 15000,
+  Paraguay: 15000,
+  Canada: 17500,
+  "Ivory Coast": 20000,
+  Egypt: 25000,
+
+  Algeria: 35000,
+  Iran: 50000,
+ // Eliminated / effectively no chance
+  Uruguay: 250000,
+  Turkey: 250000,
+  Tunisia: 250000,
+  Qatar: 250000,
+  Panama: 250000,
+  Iraq: 250000,
+  Jordan: 250000,
+  Haiti: 250000,
+  Czechia: 250000,
+  Scotland: 250000,
+  Senegal: 250000,
+  "Saudi Arabia": 250000,
+  "South Africa": 250000,
+  "Cape Verde": 250000,
+  "Bosnia & Herzegovina": 250000,
+  "DR Congo": 250000,
+  "Curaçao": 250000,
+   "New Zealand": 50000,
   Uzbekistan: 250000,
 };
 const ADVANCE_ODDS = {
-  // Group D (final June 25): USA clinched 1st, Turkey eliminated.
-  // Australia (3pts, GD+2) vs Paraguay (3pts, GD-3) for 2nd.
-  Australia: -300, Paraguay: 230,
-  // Group E (final June 25): Germany clinched 1st; Ecuador and Ivory Coast racing for 2nd.
-  Ecuador: 200,
-  // Group F (final June 25): Netherlands clinched; Japan (4pts) vs Sweden (3pts) for 2nd.
-  Japan: -220, Sweden: 175,
-  // Group G (final June 26): all four teams still in contention
-  Egypt: -350, Belgium: -500, Iran: 700, "New Zealand": 1100,
-  // Group H (final June 26): Spain near-clinched; three-way contest for 2nd
-  "Cape Verde": -200, Uruguay: 400, "Saudi Arabia": 300,
-  // Group L (final June 27): England near-clinched; Croatia vs Ghana for 2nd spot
-  Ghana: -300, Croatia: -600,
+
+  // Group J
+  Austria: -170,
+  Algeria: 140,
+
+  // Group K
+  "DR Congo": 125,
+  Uzbekistan: 260,
+
+  // Group L
+  Croatia: -180,
+  Ghana: 150,
 };
  
 function americanToProb(odds) {
