@@ -78,7 +78,7 @@ const OUTRIGHT_WIN_ODDS = {
    "DR Congo": 250000,
    
  // Eliminated 
-  Uruguay: 250000,
+  Uruguay: 250000, eliminated
   Turkey: 250000,
   Tunisia: 250000,
   Qatar: 250000,
