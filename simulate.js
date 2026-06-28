@@ -1,214 +1,235 @@
 /* ============================================================
-   WIN-ODDS SIMULATOR
+   WIN-ODDS SIMULATOR  (knockout-stage edition)
    Monte Carlo estimate of each entrant's chance of winning the
-   competition, based on a simple Poisson goal model built from
-   each team's actual scoring record so far this tournament.
-   This is a fun estimate, not a prediction service — sample
-   sizes are small early on, so it sharpens up as more games
-   are played. Reuses the real scoring engine (resolveCode,
-   getTeamGroupStatus, getTeamProgress, computeEntrantScore) so
-   the simulated future is judged by the exact same rules as
-   the real ladder.
+   competition, based on a Poisson goal model built from each
+   team's group-stage record, calibrated by two layers of
+   bookmaker data:
+
+   1. OUTRIGHT_WIN_ODDS — "to win the World Cup" — sets the
+      long-range strength of every team via a de-vigged market
+      multiplier on their Poisson attack/defence rates. Update
+      this table after each round as new odds are published.
+
+   2. NEXT_ROUND_ODDS  — head-to-head "to advance" lines for the
+      CURRENT round's specific fixtures. This is a much stronger
+      signal than outright odds for the very next match: the
+      market already knows the matchup, recent form, injuries,
+      and venue. Both sides of each fixture are stored so the
+      model can de-vig properly, then binary-search for the
+      exact Poisson lambda scaling factor k that makes
+        P(team A advances | λA·k, λB/k) = market implied prob.
+      Once a round is complete, clear this table and fill it
+      with the next round's lines.
+      IMPORTANT: keys must exactly match the team names in
+      data.json (GROUPS / MATCHES). Lookup checks both orderings
+      so key order doesn't matter.
+
+   Reuses the real scoring engine (resolveCode, getTeamGroup-
+   Status, getTeamProgress, computeEntrantScore) so the
+   simulated future is judged by the exact same rules as the
+   real ladder.
    ============================================================ */
 
 const SIM_COUNT = 3000;
 
-// Bookmaker odds — one-time snapshot, NOT auto-updated. Two markets,
-// FanDuel (primary) / BetMGM (fill-in for teams not priced individually):
-//   OUTRIGHT_WIN_ODDS  — "to win the World Cup" (the primary signal: this is
-//                         the one number that reflects a team's expected
-//                         value across every remaining stage, which lines up
-//                         with how the comp scores +2 per stage survived).
-//                         As of June 25, 2026. Sources: FanDuel (top teams),
-//                         BetMGM June 22 (mid-tier fill-in). Eliminated teams
-//                         and teams with no individual price default to the
-//                         board's longest price (250000).
-//   ADVANCE_ODDS       — "to advance from the group" (a same-day nudge for
-//                         whichever teams are still genuinely contested —
-//                         already-clinched or already-eliminated teams
-//                         aren't priced, so this table is intentionally
-//                         partial). As of June 25, 2026 (FanDuel / FOX Sports).
-// Re-fetch and replace these manually as the tournament moves on; they will
-// get stale, fastest for ADVANCE_ODDS since it only covers the group stage.
-// // Bookmaker odds updated June 27, 2026.
-// Sources: ESPN Betting, FanDuel, TalkSport and live World Cup markets.
-// Eliminated teams default to +250000.
-//
-// ADVANCE_ODDS now only contains groups that have not yet finished.
-// Completed groups rely solely on OUTRIGHT_WIN_ODDS.
-
+/* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
+   FanDuel / ESPN Betting, June 28 2026.
+   Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 400,
-  Spain: 550,
-  England: 650,
-  Argentina: 650,
-  Portugal: 1000,
-  Brazil: 1100,
-
-  Germany: 1300,
-  Netherlands: 1700,
-
-  Belgium: 5000,
-  Colombia: 4000,
-  Morocco: 3000,
-  Norway: 3300,
-  USA: 3500,
-  Mexico: 4000,
-  Japan: 5000,
-  Switzerland: 10000,
-
-  Croatia: 8000,
-  Ghana: 8000,
-  Ecuador: 10000,
-
-  Australia: 15000,
-  Austria: 15000,
-  Sweden: 15000,
-  Paraguay: 15000,
-  Canada: 17500,
-  "Ivory Coast": 20000,
-  Egypt: 25000,
-
-  Algeria: 35000,
-  Iran: 50000,
-  "South Africa": 50000,
-  "Cape Verde": 250000,
-  "Bosnia & Herzegovina": 250000,
-  Uzbekistan: 250000,
-  "DR Congo": 250000, // Kept active here as it's still alive in ADVANCE_ODDS Group K
-   
-  // Eliminated 
-  Uruguay: 250000,
-  Turkey: 250000,
-  Tunisia: 250000,
-  Qatar: 250000,
-  Panama: 250000,
-  Iraq: 250000,
-  Jordan: 250000,
-  Haiti: 250000,
-  Czechia: 250000,
-  Scotland: 250000,
-  Senegal: 250000,
-  "Saudi Arabia": 250000,
-  "Curaçao": 250000,
-  "New Zealand": 250000,
+  France: 400, Spain: 550, England: 650, Argentina: 650,
+  Portugal: 1000, Brazil: 1100, Germany: 1300, Netherlands: 1700,
+  Morocco: 3000, Norway: 3300, USA: 3500, Colombia: 4000, Mexico: 4000,
+  Belgium: 5000, Japan: 5000, Croatia: 8000, Ghana: 8000,
+  Ecuador: 10000, Switzerland: 10000,
+  Australia: 15000, Austria: 15000, Sweden: 15000, Paraguay: 15000,
+  Canada: 17500, "Ivory Coast": 20000, Egypt: 25000, Algeria: 35000,
+  Iran: 50000, "South Africa": 50000, Senegal: 75000,
+  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000,
+  "DR Congo": 250000, Uzbekistan: 250000,
+  // Eliminated in group stage
+  "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
+  Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
+  "Saudi Arabia": 250000, Scotland: 250000, Senegal: 250000,
+  "South Korea": 250000, Tunisia: 250000, Turkey: 250000, Uruguay: 250000,
 };
 
-const ADVANCE_ODDS = {
-  // Group J
-  Austria: -170,
-  Algeria: 140,
-
-  // Group K
-  "DR Congo": 125,
-  Uzbekistan: 260,
-
-  // Group L
-  Croatia: -180,
-  Ghana: 150,
+/* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
+   R32 "to advance" lines — FanDuel, June 28 2026.
+   Key: "team1|team2"  (either order — lookup handles both).
+   Value: [team1_odds, team2_odds].
+   When R32 is complete: clear this object and populate with
+   R16 matchup lines using the same format.                    */
+const NEXT_ROUND_ODDS = {
+  "South Africa|Canada":      [260, -340],   // Sun Jun 28
+  "Brazil|Japan":             [-310, 240],   // Mon Jun 29
+  "Germany|Paraguay":         [-750, 490],
+  "Netherlands|Morocco":      [-188, 152],
+  "Ivory Coast|Norway":       [156, -190],   // Tue Jun 30
+  "France|Sweden":            [-950, 600],
+  "Mexico|Ecuador":           [-184, 150],
+  "USA|Bosnia & Herzegovina": [-800, 530],   // Wed Jul 1
+  "Belgium|Senegal":          [-194, 158],
+  "England|DR Congo":         [-1200, 700],
+  "Switzerland|Algeria":      [-340, 260],   // Thu Jul 2
+  "Croatia|Portugal":         [186, -235],
+  "Spain|Austria":            [-1200, 670],
+  "Argentina|Cape Verde":     [-2500, 1320], // Fri Jul 3
+  "Australia|Egypt":          [114, -140],
+  "Ghana|Colombia":           [235, -300],
 };
- 
+
+/* ── PROBABILITY UTILITIES ────────────────────────────────────── */
+
 function americanToProb(odds) {
   return odds < 0 ? -odds / (-odds + 100) : 100 / (odds + 100);
 }
- 
-// De-vig across the full 48-team outright field (this is one closed market,
-// so probabilities should sum to 1; bookmaker margin means the raw sum is
-// higher), then scale so the average team sits at a multiplier of 1.0.
+
+// De-vig a two-sided market; return P(team1 advances).
+function deVigProb(odds1, odds2) {
+  const r1 = americanToProb(odds1);
+  const r2 = americanToProb(odds2);
+  return r1 / (r1 + r2);
+}
+
+// Look up NEXT_ROUND_ODDS for a specific pairing.
+// Returns the de-vigged P(teamA advances), or null if no entry exists.
+// Handles both key orderings so callers don't have to worry about order.
+function matchupAdvanceProb(teamA, teamB) {
+  const keyAB = `${teamA}|${teamB}`;
+  const keyBA = `${teamB}|${teamA}`;
+  if (NEXT_ROUND_ODDS.hasOwnProperty(keyAB)) {
+    const [o1, o2] = NEXT_ROUND_ODDS[keyAB];
+    return deVigProb(o1, o2);   // team1 in key = teamA
+  }
+  if (NEXT_ROUND_ODDS.hasOwnProperty(keyBA)) {
+    const [o1, o2] = NEXT_ROUND_ODDS[keyBA];
+    return deVigProb(o2, o1);   // team1 in key = teamB, so flip
+  }
+  return null;
+}
+
+// P(Poisson(lambda) = k) — computed in log-space for stability.
+function poissonPMF(lambda, k) {
+  if (lambda <= 0) return k === 0 ? 1 : 0;
+  let lp = -lambda + k * Math.log(lambda);
+  for (let i = 1; i <= k; i++) lp -= Math.log(i);
+  return Math.exp(lp);
+}
+
+// Analytical P(teamA advances | Poisson(expA) vs Poisson(expB)).
+// "Advances" = scores more in regulation, OR draws → 50/50 in extra time/pens.
+// Truncated at MAX goals (> 99.9% of mass for typical lambdas ≤ 4.5).
+function poissonAdvanceProb(expA, expB) {
+  const MAX = 9;
+  let pWin = 0, pDraw = 0;
+  for (let i = 0; i <= MAX; i++) {
+    const pA = poissonPMF(expA, i);
+    for (let j = 0; j <= MAX; j++) {
+      const pB = poissonPMF(expB, j);
+      if (i > j) pWin += pA * pB;
+      else if (i === j) pDraw += pA * pB;
+    }
+  }
+  return pWin + 0.5 * pDraw;
+}
+
+// Binary-search for scale k such that:
+//   poissonAdvanceProb(expA * k, expB / k) ≈ targetP
+// k > 1 → teamA stronger relative to model; k < 1 → weaker.
+function calibrateK(expA, expB, targetP) {
+  let lo = 0.01, hi = 100;
+  for (let i = 0; i < 50; i++) {
+    const mid = (lo + hi) / 2;
+    poissonAdvanceProb(expA * mid, expB / mid) < targetP
+      ? (lo = mid)
+      : (hi = mid);
+  }
+  return (lo + hi) / 2;
+}
+
+/* ── MARKET STRENGTH MODEL ───────────────────────────────────── */
+
+// De-vig OUTRIGHT_WIN_ODDS across all 48 teams, then scale so the
+// average team sits at a multiplier of 1.0. Used to adjust Poisson
+// attack/defence rates proportionally.
 function marketMultipliers() {
   const teams = Object.keys(OUTRIGHT_WIN_ODDS);
   const raw = {};
   let sum = 0;
-  teams.forEach((t) => {
-    raw[t] = americanToProb(OUTRIGHT_WIN_ODDS[t]);
-    sum += raw[t];
-  });
+  teams.forEach((t) => { raw[t] = americanToProb(OUTRIGHT_WIN_ODDS[t]); sum += raw[t]; });
   const mult = {};
-  teams.forEach((t) => {
-    let m = (raw[t] / sum) * teams.length;
-    // Where today's "advance from group" odds are available, nudge the
-    // outright-based multiplier toward what the more immediate, contested
-    // market thinks — at half-strength (sqrt) so it refines rather than
-    // overrides the global signal. ADVANCE_ODDS is single-sided (no paired
-    // "no" price to de-vig against), so this is an approximation.
-    if (ADVANCE_ODDS.hasOwnProperty(t)) {
-      const pAdvance = americanToProb(ADVANCE_ODDS[t]);
-      const advanceMult = pAdvance / (32 / 48); // 32 of 48 teams advance on average
-      m *= Math.sqrt(advanceMult);
-    }
-    mult[t] = m;
-  });
+  teams.forEach((t) => { mult[t] = (raw[t] / sum) * teams.length; });
   return mult;
 }
- 
-function poissonRandom(lambda) {
-  const L = Math.exp(-lambda);
-  let k = 0,
-    p = 1;
-  do {
-    k++;
-    p *= Math.random();
-  } while (p > L);
-  return k - 1;
-}
- 
+
 function buildStrengthModel() {
   const stats = {};
-  Object.values(GROUPS)
-    .flat()
+  Object.values(GROUPS).flat()
     .forEach((team) => (stats[team] = { gf: 0, ga: 0, played: 0 }));
-  let totalGoals = 0,
-    totalGames = 0;
+  let totalGoals = 0, totalGames = 0;
   MATCHES.forEach((m) => {
     if (!m.score || m.round !== "Group") return;
     const [s1, s2] = m.score;
-    stats[m.team1].gf += s1;
-    stats[m.team1].ga += s2;
-    stats[m.team1].played++;
-    stats[m.team2].gf += s2;
-    stats[m.team2].ga += s1;
-    stats[m.team2].played++;
-    totalGoals += s1 + s2;
-    totalGames += 2;
+    stats[m.team1].gf += s1; stats[m.team1].ga += s2; stats[m.team1].played++;
+    stats[m.team2].gf += s2; stats[m.team2].ga += s1; stats[m.team2].played++;
+    totalGoals += s1 + s2; totalGames += 2;
   });
   const leagueAvg = totalGames ? totalGoals / totalGames : 1.3;
   const marketMult = marketMultipliers();
   const strengths = {};
   Object.entries(stats).forEach(([team, s]) => {
-    const prior = 3; // pseudo-games of "average" strength blended in, biggest early on
+    const prior = 3; // pseudo-games of average strength blended in
     const weight = s.played / (s.played + prior);
-    const attack = s.played ? s.gf / s.played : leagueAvg;
+    const attack  = s.played ? s.gf / s.played : leagueAvg;
     const defense = s.played ? s.ga / s.played : leagueAvg;
-    const formAttack = weight * attack + (1 - weight) * leagueAvg;
+    const formAttack  = weight * attack  + (1 - weight) * leagueAvg;
     const formDefense = weight * defense + (1 - weight) * leagueAvg;
-    // Nudge form-based rates using the bookmaker's outright (+ where
-    // available, advance-from-group) odds — a team the market rates highly
-    // scores a bit more / concedes a bit less than its in-tournament numbers
-    // alone would suggest, and vice versa.
-    // Note: outright-winner odds compound probability across every remaining
-    // stage (up to 7 matches), so a 4th-root (not square-root) keeps the
-    // per-match adjustment realistic rather than implying absurd single-game
-    // blowouts for big underdogs.
+    // Outright odds span up to 5 remaining matches (R32→final).
+    // Use 5th-root so the per-match multiplier stays realistic.
+    // NEXT_ROUND_ODDS then overrides the immediate next match
+    // independently via calibrateK, so this is purely a "beyond
+    // next round" signal.
     const m = marketMult[team] || 1;
-    const adj = Math.pow(Math.min(Math.max(m, 0.05), 6), 0.25);
-    strengths[team] = {
-      attack: formAttack * adj,
-      defense: formDefense / adj,
-    };
+    const adj = Math.pow(Math.min(Math.max(m, 0.05), 6), 0.20);
+    strengths[team] = { attack: formAttack * adj, defense: formDefense / adj };
   });
   return { strengths, leagueAvg };
 }
- 
+
+/* ── MATCH SIMULATION ────────────────────────────────────────── */
+
+function poissonRandom(lambda) {
+  const L = Math.exp(-lambda);
+  let k = 0, p = 1;
+  do { k++; p *= Math.random(); } while (p > L);
+  return k - 1;
+}
+
+// Simulate a single match score.
+// If NEXT_ROUND_ODDS has an entry for this specific pairing, the Poisson
+// lambdas are scaled so the model's advance probability exactly matches
+// the market. For all other matches the base strength model drives things.
 function simScore(teamA, teamB, model) {
   const { strengths, leagueAvg } = model;
   const a = strengths[teamA] || { attack: leagueAvg, defense: leagueAvg };
   const b = strengths[teamB] || { attack: leagueAvg, defense: leagueAvg };
   const clamp = (x) => Math.min(4.5, Math.max(0.2, x));
-  const expA = clamp((a.attack / leagueAvg) * (b.defense / leagueAvg) * leagueAvg);
-  const expB = clamp((b.attack / leagueAvg) * (a.defense / leagueAvg) * leagueAvg);
+  let expA = clamp((a.attack / leagueAvg) * (b.defense / leagueAvg) * leagueAvg);
+  let expB = clamp((b.attack / leagueAvg) * (a.defense / leagueAvg) * leagueAvg);
+
+  // Market-calibrate if we have a head-to-head line for this matchup.
+  const targetP = matchupAdvanceProb(teamA, teamB);
+  if (targetP !== null) {
+    const k = calibrateK(expA, expB, targetP);
+    expA *= k;
+    expB /= k;
+  }
+
   return [poissonRandom(expA), poissonRandom(expB)];
 }
- 
+
+/* ── GROUP STAGE SIMULATION ──────────────────────────────────── */
+
 function simGroupStandings(letter, simMatches) {
   const teams = GROUPS[letter];
   const table = {};
@@ -217,28 +238,13 @@ function simGroupStandings(letter, simMatches) {
     .filter((m) => m.group === letter)
     .forEach((m) => {
       const [s1, s2] = m.score;
-      const r1 = table[m.team1],
-        r2 = table[m.team2];
-      r1.p++;
-      r2.p++;
-      r1.gf += s1;
-      r1.ga += s2;
-      r2.gf += s2;
-      r2.ga += s1;
-      if (s1 > s2) {
-        r1.w++;
-        r1.pts += 3;
-        r2.l++;
-      } else if (s2 > s1) {
-        r2.w++;
-        r2.pts += 3;
-        r1.l++;
-      } else {
-        r1.d++;
-        r2.d++;
-        r1.pts += 1;
-        r2.pts += 1;
-      }
+      const r1 = table[m.team1], r2 = table[m.team2];
+      r1.p++; r2.p++;
+      r1.gf += s1; r1.ga += s2;
+      r2.gf += s2; r2.ga += s1;
+      if (s1 > s2)      { r1.w++; r1.pts += 3; r2.l++; }
+      else if (s2 > s1) { r2.w++; r2.pts += 3; r1.l++; }
+      else              { r1.d++; r2.d++; r1.pts++; r2.pts++; }
     });
   Object.values(table).forEach((r) => (r.gd = r.gf - r.ga));
   const rows = Object.values(table).sort(
@@ -246,7 +252,7 @@ function simGroupStandings(letter, simMatches) {
   );
   return { rows, decided: true };
 }
- 
+
 function simThirdPlaceRace(standings) {
   const rows = [];
   Object.entries(standings).forEach(([letter, data]) => {
@@ -256,56 +262,39 @@ function simThirdPlaceRace(standings) {
   rows.forEach((r, i) => (r.rank = i + 1));
   return rows;
 }
- 
+
+/* ── KNOCKOUT SIMULATION ─────────────────────────────────────── */
+
 function simKnockout(standings, top8Teams, model) {
-  // Note: which exact third-place team lands in which bracket slot is governed by a
-  // fixed FIFA permutation table we don't replicate here — we just assign the 8
-  // qualifiers to the open slots in a deterministic order.
-  
-  // Clone top8Teams array so we can shift/consume items sequentially
+  // Note: which exact third-place team lands in which bracket slot is governed
+  // by a fixed FIFA permutation table we don't replicate here — we assign the
+  // 8 qualifiers to the open slots in a deterministic order.
   const teamsPool = [...top8Teams];
   const resolved = {};
   const koMatches = MATCHES.filter((m) => m.num >= 73).sort((a, b) => a.num - b.num);
-
   koMatches.forEach((m) => {
     let code1 = m.team1, code2 = m.team2;
-
-    // Sequentially assign a unique third place team whenever a 3A-3L placeholder is met
-    if (/^3[A-L]/.test(code1)) {
-      code1 = teamsPool.shift() || code1;
-    }
-    if (/^3[A-L]/.test(code2)) {
-      code2 = teamsPool.shift() || code2;
-    }
-
+    if (/^3[A-L]/.test(code1)) code1 = teamsPool.shift() || code1;
+    if (/^3[A-L]/.test(code2)) code2 = teamsPool.shift() || code2;
     const team1 = resolveCode(code1, standings, resolved);
     const team2 = resolveCode(code2, standings, resolved);
     let score = m.score, wonOnPens = m.wonOnPens, winner = null;
-
     if (!score && team1 && team2) {
       score = simScore(team1, team2, model);
       if (score[0] === score[1]) wonOnPens = Math.random() < 0.5 ? "team1" : "team2";
     }
-
     if (score && team1 && team2) {
-      if (wonOnPens) winner = wonOnPens === "team1" ? team1 : team2;
+      if (wonOnPens)            winner = wonOnPens === "team1" ? team1 : team2;
       else if (score[0] > score[1]) winner = team1;
       else if (score[1] > score[0]) winner = team2;
     }
-
-    resolved[m.num] = {
-      ...m,
-      team1: team1 || code1,
-      team2: team2 || code2,
-      score,
-      wonOnPens,
-      winner
-    };
+    resolved[m.num] = { ...m, team1: team1 || code1, team2: team2 || code2, score, wonOnPens, winner };
   });
-
   return Object.values(resolved);
 }
- 
+
+/* ── TOP-LEVEL SIMULATION RUNNER ─────────────────────────────── */
+
 function runOneSimulation(model) {
   const simGroupMatches = MATCHES.filter((m) => m.round === "Group").map((m) => {
     if (m.score) return m;
@@ -318,55 +307,40 @@ function runOneSimulation(model) {
   const bracket = simKnockout(standings, top8, model);
   return { standings, thirdRace, allDecided: true, bracket };
 }
- 
+
 function computeWinOdds() {
   const model = buildStrengthModel();
-  const mainWins = {};
-  ENTRANTS.forEach((e) => (mainWins[e.name] = 0));
-  const randomWins = {};
-  ENTRANTS.forEach((e) => (randomWins[e.name] = 0));
+  const mainWins = {}, randomWins = {};
+  ENTRANTS.forEach((e) => { mainWins[e.name] = 0; randomWins[e.name] = 0; });
   let cutoffPtsSum = 0, cutoffGdSum = 0;
 
   for (let i = 0; i < SIM_COUNT; i++) {
     const ctx = runOneSimulation(model);
-    const eighth = ctx.thirdRace[7]; // rank 8 -> index 7, the qualification cutoff line
-    if (eighth) {
-      cutoffPtsSum += eighth.pts;
-      cutoffGdSum += eighth.gd;
-    }
+    const eighth = ctx.thirdRace[7];
+    if (eighth) { cutoffPtsSum += eighth.pts; cutoffGdSum += eighth.gd; }
+
     let bestMain = -1, bestMainNames = [];
     let bestRandom = -1, bestRandomNames = [];
-
     ENTRANTS.forEach((e) => {
       const score = computeEntrantScore(e, ctx);
-      if (score.total > bestMain) {
-        bestMain = score.total;
-        bestMainNames = [e.name];
-      } else if (score.total === bestMain) bestMainNames.push(e.name);
-
+      if (score.total > bestMain)        { bestMain = score.total; bestMainNames = [e.name]; }
+      else if (score.total === bestMain)   bestMainNames.push(e.name);
       const rp = score.randomDetail.points;
-      if (rp > bestRandom) {
-        bestRandom = rp;
-        bestRandomNames = [e.name];
-      } else if (rp === bestRandom) bestRandomNames.push(e.name);
+      if (rp > bestRandom)               { bestRandom = rp; bestRandomNames = [e.name]; }
+      else if (rp === bestRandom)          bestRandomNames.push(e.name);
     });
-
     bestMainNames.forEach((n) => (mainWins[n] += 1 / bestMainNames.length));
     bestRandomNames.forEach((n) => (randomWins[n] += 1 / bestRandomNames.length));
   }
 
   const mainOdds = {}, randomOdds = {};
   ENTRANTS.forEach((e) => {
-    mainOdds[e.name] = mainWins[e.name] / SIM_COUNT;
+    mainOdds[e.name]   = mainWins[e.name]   / SIM_COUNT;
     randomOdds[e.name] = randomWins[e.name] / SIM_COUNT;
   });
-
   return {
     mainOdds,
     randomOdds,
-    expectedThirdCutoff: {
-      pts: cutoffPtsSum / SIM_COUNT,
-      gd: cutoffGdSum / SIM_COUNT
-    },
+    expectedThirdCutoff: { pts: cutoffPtsSum / SIM_COUNT, gd: cutoffGdSum / SIM_COUNT },
   };
 }
