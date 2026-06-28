@@ -904,7 +904,10 @@
       "date": "2026-06-27",
       "team1": "Algeria",
       "team2": "Austria",
-      "score": null,
+      "score": [
+        3,
+        3
+      ],
       "venue": "Kansas City"
     },
     {
@@ -915,7 +918,10 @@
       "date": "2026-06-27",
       "team1": "Jordan",
       "team2": "Argentina",
-      "score": null,
+      "score": [
+        1,
+        3
+      ],
       "venue": "Arlington"
     },
     {
@@ -982,7 +988,10 @@
       "date": "2026-06-27",
       "team1": "Colombia",
       "team2": "Portugal",
-      "score": null,
+      "score": [
+        0,
+        0
+      ],
       "venue": "Miami"
     },
     {
@@ -993,7 +1002,10 @@
       "date": "2026-06-27",
       "team1": "DR Congo",
       "team2": "Uzbekistan",
-      "score": null,
+      "score": [
+        3,
+        1
+      ],
       "venue": "Atlanta"
     },
     {
@@ -1060,7 +1072,10 @@
       "date": "2026-06-27",
       "team1": "Panama",
       "team2": "England",
-      "score": null,
+      "score": [
+        0,
+        2
+      ],
       "venue": "East Rutherford"
     },
     {
@@ -1071,7 +1086,10 @@
       "date": "2026-06-27",
       "team1": "Croatia",
       "team2": "Ghana",
-      "score": null,
+      "score": [
+        2,
+        1
+      ],
       "venue": "Philadelphia"
     },
     {
@@ -1088,7 +1106,7 @@
       "round": "R32",
       "date": "2026-06-29",
       "team1": "Germany",
-      "team2": "3A/B/C/D/F",
+      "team2": "Paraguay",
       "score": null,
       "venue": "Foxborough"
     },
@@ -1114,8 +1132,8 @@
       "num": 77,
       "round": "R32",
       "date": "2026-06-30",
-      "team1": "1I",
-      "team2": "3C/D/F/G/H",
+      "team1": "France",
+      "team2": "Sweden",
       "score": null,
       "venue": "East Rutherford"
     },
@@ -1124,7 +1142,7 @@
       "round": "R32",
       "date": "2026-06-30",
       "team1": "Ivory Coast",
-      "team2": "2I",
+      "team2": "Norway",
       "score": null,
       "venue": "Arlington"
     },
@@ -1133,7 +1151,7 @@
       "round": "R32",
       "date": "2026-06-30",
       "team1": "Mexico",
-      "team2": "3C/E/F/H/I",
+      "team2": "Ecuador",
       "score": null,
       "venue": "Mexico City"
     },
@@ -1141,8 +1159,8 @@
       "num": 80,
       "round": "R32",
       "date": "2026-07-01",
-      "team1": "1L",
-      "team2": "3E/H/I/J/K",
+      "team1": "England",
+      "team2": "DR Congo",
       "score": null,
       "venue": "Atlanta"
     },
@@ -1151,7 +1169,7 @@
       "round": "R32",
       "date": "2026-07-01",
       "team1": "USA",
-      "team2": "3B/E/F/I/J",
+      "team2": "Bosnia & Herzegovina",
       "score": null,
       "venue": "Santa Clara"
     },
@@ -1159,8 +1177,8 @@
       "num": 82,
       "round": "R32",
       "date": "2026-07-01",
-      "team1": "1G",
-      "team2": "3A/E/H/I/J",
+      "team1": "Belgium",
+      "team2": "Senegal",
       "score": null,
       "venue": "Seattle"
     },
@@ -1168,8 +1186,8 @@
       "num": 83,
       "round": "R32",
       "date": "2026-07-02",
-      "team1": "2K",
-      "team2": "2L",
+      "team1": "Portugal",
+      "team2": "Croatia",
       "score": null,
       "venue": "Toronto"
     },
@@ -1177,8 +1195,8 @@
       "num": 84,
       "round": "R32",
       "date": "2026-07-02",
-      "team1": "1H",
-      "team2": "2J",
+      "team1": "Spain",
+      "team2": "Austria",
       "score": null,
       "venue": "Los Angeles"
     },
@@ -1187,7 +1205,7 @@
       "round": "R32",
       "date": "2026-07-02",
       "team1": "Switzerland",
-      "team2": "3E/F/G/I/J",
+      "team2": "Algeria",
       "score": null,
       "venue": "Vancouver"
     },
@@ -1195,8 +1213,8 @@
       "num": 86,
       "round": "R32",
       "date": "2026-07-03",
-      "team1": "1J",
-      "team2": "2H",
+      "team1": "Argentina",
+      "team2": "Cape Verde",
       "score": null,
       "venue": "Miami"
     },
@@ -1204,8 +1222,8 @@
       "num": 87,
       "round": "R32",
       "date": "2026-07-03",
-      "team1": "1K",
-      "team2": "3D/E/I/J/L",
+      "team1": "Colombia",
+      "team2": "Ghana",
       "score": null,
       "venue": "Kansas City"
     },
@@ -1214,7 +1232,7 @@
       "round": "R32",
       "date": "2026-07-03",
       "team1": "Australia",
-      "team2": "2G",
+      "team2": "Egypt",
       "score": null,
       "venue": "Arlington"
     },
