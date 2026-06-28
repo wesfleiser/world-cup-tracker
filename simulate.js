@@ -14,70 +14,72 @@
 const SIM_COUNT = 3000;
 
 // Bookmaker odds — one-time snapshot, NOT auto-updated. Two markets,
-// FanDuel (primary) / BetMGM (fill-in for teams not priced individually):
+// FanDuel (primary) / BetMGM / bet365 (fill-in for teams not priced individually):
 //   OUTRIGHT_WIN_ODDS  — "to win the World Cup" (the primary signal: this is
 //                         the one number that reflects a team's expected
 //                         value across every remaining stage, which lines up
 //                         with how the comp scores +2 per stage survived).
-//                         As of June 25, 2026. Sources: FanDuel (top teams),
-//                         BetMGM June 22 (mid-tier fill-in). Eliminated teams
+//                         As of June 28, 2026. Sources: FanDuel (top teams),
+//                         BetMGM / bet365 (mid-tier fill-in). Eliminated teams
 //                         and teams with no individual price default to the
 //                         board's longest price (250000).
 //   ADVANCE_ODDS       — "to advance from the group" (a same-day nudge for
 //                         whichever teams are still genuinely contested —
 //                         already-clinched or already-eliminated teams
 //                         aren't priced, so this table is intentionally
-//                         partial). As of June 25, 2026 (FanDuel / FOX Sports).
+//                         partial). As of June 28, 2026. Group stage complete;
+//                         all 12 groups decided — ADVANCE_ODDS is now empty.
 // Re-fetch and replace these manually as the tournament moves on; they will
 // get stale, fastest for ADVANCE_ODDS since it only covers the group stage.
-// // Bookmaker odds updated June 27, 2026.
-// Sources: ESPN Betting, FanDuel, TalkSport and live World Cup markets.
+// Bookmaker odds updated June 28, 2026.
+// Sources: FanDuel, BetMGM, bet365 and live World Cup markets.
 // Eliminated teams default to +250000.
 //
-// ADVANCE_ODDS now only contains groups that have not yet finished.
+// ADVANCE_ODDS is now empty — all 12 groups have concluded.
 // Completed groups rely solely on OUTRIGHT_WIN_ODDS.
 
 const OUTRIGHT_WIN_ODDS = {
-  France: 400,
+  France: 350,
   Spain: 550,
   England: 650,
-  Argentina: 650,
+  Argentina: 500,
   Portugal: 1000,
-  Brazil: 1100,
+  Brazil: 1200,
 
-  Germany: 1300,
-  Netherlands: 1700,
+  Germany: 1500,
+  Netherlands: 1400,
 
-  Belgium: 5000,
-  Colombia: 4000,
-  Morocco: 3000,
+  Belgium: 4500,
+  Colombia: 4500,
+  Morocco: 4500,
   Norway: 3300,
-  USA: 3500,
-  Mexico: 4000,
+  USA: 3300,
+  Mexico: 5000,
   Japan: 5000,
-  Switzerland: 10000,
+  Switzerland: 6000,
 
-  Croatia: 8000,
-  Ghana: 8000,
+  Croatia: 15000,
+  Ghana: 30000,
   Ecuador: 10000,
 
   Australia: 15000,
   Austria: 15000,
   Sweden: 15000,
-  Paraguay: 15000,
+  Paraguay: 20000,
   Canada: 17500,
   "Ivory Coast": 20000,
   Egypt: 25000,
 
   Algeria: 35000,
   Iran: 50000,
-  "South Africa": 50000,
-  "Cape Verde": 250000,
-  "Bosnia & Herzegovina": 250000,
+  Senegal: 12500,
+  "South Africa": 75000,
+  "Cape Verde": 100000,
+  "Bosnia & Herzegovina": 50000,
   Uzbekistan: 250000,
-  "DR Congo": 250000, // Kept active here as it's still alive in ADVANCE_ODDS Group K
-   
-  // Eliminated 
+  "DR Congo": 250000,
+
+  // Eliminated
   Uruguay: 250000,
   Turkey: 250000,
   Tunisia: 250000,
@@ -88,24 +90,13 @@ const OUTRIGHT_WIN_ODDS = {
   Haiti: 250000,
   Czechia: 250000,
   Scotland: 250000,
-  Senegal: 250000,
   "Saudi Arabia": 250000,
   "Curaçao": 250000,
   "New Zealand": 250000,
 };
 
 const ADVANCE_ODDS = {
-  // Group J
-  Austria: -170,
-  Algeria: 140,
-
-  // Group K
-  "DR Congo": 125,
-  Uzbekistan: 260,
-
-  // Group L
-  Croatia: -180,
-  Ghana: 150,
+  // Group stage complete as of June 28, 2026 — all 12 groups decided.
 };
  
 function americanToProb(odds) {
