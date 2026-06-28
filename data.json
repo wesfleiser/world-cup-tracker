@@ -1098,7 +1098,10 @@
       "date": "2026-06-28",
       "team1": "South Africa",
       "team2": "Canada",
-      "score": null,
+      "score": [
+        0,
+        1
+      ],
       "venue": "Los Angeles"
     },
     {
