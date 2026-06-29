@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-06-28",
+    "lastUpdated": "2026-06-29",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -1252,7 +1252,7 @@
       "num": 90,
       "round": "R16",
       "date": "2026-07-04",
-      "team1": "W73",
+      "team1": "Canada",
       "team2": "W75",
       "score": null,
       "venue": "Houston"
