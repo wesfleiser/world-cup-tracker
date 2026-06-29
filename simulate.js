@@ -33,49 +33,49 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / ESPN Betting, June 28 2026.
+   FanDuel / DraftKings / bet365, June 29 2026.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 400, Spain: 550, England: 650, Argentina: 650,
-  Portugal: 1000, Brazil: 1100, Germany: 1300, Netherlands: 1700,
-  Morocco: 3000, Norway: 3300, USA: 3500, Colombia: 4000, Mexico: 4000,
-  Belgium: 5000, Japan: 5000, Croatia: 8000, Ghana: 8000,
-  Ecuador: 10000, Switzerland: 10000,
-  Australia: 15000, Austria: 15000, Sweden: 15000, Paraguay: 15000,
-  Canada: 17500, "Ivory Coast": 20000, Egypt: 25000, Algeria: 35000,
-  Iran: 50000, "South Africa": 50000, Senegal: 75000,
-  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000,
-  "DR Congo": 250000, Uzbekistan: 250000,
+  France: 350, Argentina: 500, Spain: 550, England: 700,
+  Portugal: 1300, Brazil: 1200, Germany: 1300, Netherlands: 1500,
+  Norway: 3300, USA: 3000, Belgium: 4500, Morocco: 5000, Mexico: 5000,
+  Japan: 6600, Colombia: 6600, Switzerland: 8000, Ecuador: 12500,
+  Canada: 15000, "Ivory Coast": 15000, Croatia: 15000,
+  Australia: 20000, Algeria: 25000, Austria: 25000, Egypt: 25000,
+  Sweden: 25000, Ghana: 30000, Senegal: 40000, Paraguay: 50000,
+  "Bosnia & Herzegovina": 75000, "Cape Verde": 100000, "DR Congo": 100000,
+  // Eliminated in Round of 32
+  "South Africa": 250000,
   // Eliminated in group stage
-  "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
-  Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
-  "Saudi Arabia": 250000, Scotland: 250000, Senegal: 250000,
+  "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iran: 250000,
+  Iraq: 250000, Jordan: 250000, "New Zealand": 250000, Panama: 250000,
+  Qatar: 250000, "Saudi Arabia": 250000, Scotland: 250000,
   "South Korea": 250000, Tunisia: 250000, Turkey: 250000, Uruguay: 250000,
+  Uzbekistan: 250000,
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   R32 "to advance" lines — FanDuel, June 28 2026.
+   R32 "to advance" lines — FanDuel / DraftKings, June 29 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
    When R32 is complete: clear this object and populate with
    R16 matchup lines using the same format.                    */
 const NEXT_ROUND_ODDS = {
-  "South Africa|Canada":      [260, -340],   // Sun Jun 28
-  "Brazil|Japan":             [-310, 240],   // Mon Jun 29
-  "Germany|Paraguay":         [-750, 490],
-  "Netherlands|Morocco":      [-188, 152],
-  "Ivory Coast|Norway":       [156, -190],   // Tue Jun 30
-  "France|Sweden":            [-950, 600],
-  "Mexico|Ecuador":           [-184, 150],
-  "USA|Bosnia & Herzegovina": [-800, 530],   // Wed Jul 1
-  "Belgium|Senegal":          [-194, 158],
-  "England|DR Congo":         [-1200, 700],
-  "Switzerland|Algeria":      [-340, 260],   // Thu Jul 2
+  "Brazil|Japan":             [-320, 245],   // Mon Jun 29
+  "Germany|Paraguay":         [-950, 600],
+  "Netherlands|Morocco":      [-174, 142],
+  "Ivory Coast|Norway":       [158, -194],   // Tue Jun 30
+  "France|Sweden":            [-1100, 640],
+  "Mexico|Ecuador":           [-170, 140],
+  "USA|Bosnia & Herzegovina": [-750, 510],   // Wed Jul 1
+  "Belgium|Senegal":          [-172, 140],
+  "England|DR Congo":         [-950, 580],
+  "Switzerland|Algeria":      [-198, 162],   // Thu Jul 2
   "Croatia|Portugal":         [186, -235],
-  "Spain|Austria":            [-1200, 670],
-  "Argentina|Cape Verde":     [-2500, 1320], // Fri Jul 3
+  "Spain|Austria":            [-1200, 690],
+  "Argentina|Cape Verde":     [-2500, 1280], // Fri Jul 3
   "Australia|Egypt":          [114, -140],
-  "Ghana|Colombia":           [235, -300],
+  "Ghana|Colombia":           [350, -480],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
