@@ -33,23 +33,23 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / ESPN Betting, June 29 2026.
-   Post R32 Day 1: Germany and Japan eliminated.
-   Brazil surged after comeback win vs Japan.
-   Paraguay tightened dramatically after stunning Germany on pens.
+   FanDuel / ESPN Betting, June 30 2026.
+   Post R32 Day 2: Netherlands eliminated (lost to Morocco on pens).
+   South Africa eliminated (lost to Canada 1-0).
+   Morocco and Canada odds shortened after upsets.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 340, Argentina: 410, Spain: 500, England: 600,
-  Brazil: 950, Portugal: 1000,
-  Netherlands: 1500, Norway: 2000,
-  USA: 3000, Morocco: 3500,
-  Colombia: 4000, Mexico: 4000,
+  France: 320, Argentina: 400, Spain: 480, England: 580,
+  Brazil: 900, Portugal: 950,
+  Norway: 1800, Morocco: 2200,
+  USA: 2800, Canada: 3500,
+  Colombia: 3800, Mexico: 4000,
   Belgium: 5000,
-  Paraguay: 8000, Croatia: 8000,
-  Switzerland: 10000,
-  Australia: 15000, Austria: 15000, Sweden: 15000,
-  Canada: 17500, "Ivory Coast": 20000, Egypt: 25000, Algeria: 35000,
-  "South Africa": 50000, Iran: 50000, Senegal: 75000, Ghana: 75000,
+  Paraguay: 7000, Croatia: 8000,
+  Switzerland: 9000,
+  Australia: 14000, Austria: 14000, Sweden: 15000,
+  "Ivory Coast": 18000, Egypt: 25000, Algeria: 35000,
+  Iran: 50000, Senegal: 75000, Ghana: 75000,
   "Bosnia & Herzegovina": 250000, "Cape Verde": 250000,
   "DR Congo": 250000, Uzbekistan: 250000,
   // Eliminated in group stage
@@ -58,23 +58,19 @@ const OUTRIGHT_WIN_ODDS = {
   "Saudi Arabia": 250000, Scotland: 250000,
   "South Korea": 250000, Tunisia: 250000, Turkey: 250000, Uruguay: 250000,
   // Eliminated in R32
-  Germany: 250000, Japan: 250000,
+  Germany: 250000, Japan: 250000, Netherlands: 250000, "South Africa": 250000,
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   R32 "to advance" lines — FanDuel, June 28/29 2026.
+   R32 "to advance" lines — FanDuel, June 30 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   Played matches removed. Netherlands vs Morocco result unknown
-   — removed so model falls back to outright odds for that sim.
+   Completed matches removed: Germany/Paraguay ✓, Netherlands/Morocco ✓,
+   Brazil/Japan ✓, South Africa/Canada ✓.
    When R32 is complete: clear this object and populate with
    R16 matchup lines using the same format.                    */
 const NEXT_ROUND_ODDS = {
-  // Jun 28 — result unknown, keep until confirmed
-  "South Africa|Canada":      [260, -340],
-  // Jun 29 — Brazil ✓ and Paraguay ✓ already played; Netherlands/Morocco still live
-  "Netherlands|Morocco":      [-188, 152],
-  // Jun 30
+  // Jun 30 (today — in progress or upcoming)
   "Ivory Coast|Norway":       [156, -190],
   "France|Sweden":            [-950, 600],
   "Mexico|Ecuador":           [-184, 150],
