@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-06-30",
+    "lastUpdated": "2026-07-01",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -10,136 +10,1499 @@
     }
   },
   "groups": {
-    "A": ["Mexico", "South Africa", "South Korea", "Czechia"],
-    "B": ["Canada", "Bosnia & Herzegovina", "Qatar", "Switzerland"],
-    "C": ["Brazil", "Morocco", "Haiti", "Scotland"],
-    "D": ["USA", "Paraguay", "Australia", "Turkey"],
-    "E": ["Germany", "Curaçao", "Ivory Coast", "Ecuador"],
-    "F": ["Netherlands", "Japan", "Sweden", "Tunisia"],
-    "G": ["Belgium", "Egypt", "Iran", "New Zealand"],
-    "H": ["Spain", "Cape Verde", "Saudi Arabia", "Uruguay"],
-    "I": ["France", "Senegal", "Iraq", "Norway"],
-    "J": ["Argentina", "Algeria", "Austria", "Jordan"],
-    "K": ["Portugal", "DR Congo", "Uzbekistan", "Colombia"],
-    "L": ["England", "Croatia", "Ghana", "Panama"]
+    "A": [
+      "Mexico",
+      "South Africa",
+      "South Korea",
+      "Czechia"
+    ],
+    "B": [
+      "Canada",
+      "Bosnia & Herzegovina",
+      "Qatar",
+      "Switzerland"
+    ],
+    "C": [
+      "Brazil",
+      "Morocco",
+      "Haiti",
+      "Scotland"
+    ],
+    "D": [
+      "USA",
+      "Paraguay",
+      "Australia",
+      "Turkey"
+    ],
+    "E": [
+      "Germany",
+      "Curaçao",
+      "Ivory Coast",
+      "Ecuador"
+    ],
+    "F": [
+      "Netherlands",
+      "Japan",
+      "Sweden",
+      "Tunisia"
+    ],
+    "G": [
+      "Belgium",
+      "Egypt",
+      "Iran",
+      "New Zealand"
+    ],
+    "H": [
+      "Spain",
+      "Cape Verde",
+      "Saudi Arabia",
+      "Uruguay"
+    ],
+    "I": [
+      "France",
+      "Senegal",
+      "Iraq",
+      "Norway"
+    ],
+    "J": [
+      "Argentina",
+      "Algeria",
+      "Austria",
+      "Jordan"
+    ],
+    "K": [
+      "Portugal",
+      "DR Congo",
+      "Uzbekistan",
+      "Colombia"
+    ],
+    "L": [
+      "England",
+      "Croatia",
+      "Ghana",
+      "Panama"
+    ]
   },
   "matches": [
-    { "num": 1,  "round": "Group", "group": "A", "md": 1,  "date": "2026-06-11", "team1": "Mexico",               "team2": "South Africa",        "score": [2, 0], "venue": "Mexico City" },
-    { "num": 2,  "round": "Group", "group": "A", "md": 1,  "date": "2026-06-11", "team1": "South Korea",          "team2": "Czechia",              "score": [2, 1], "venue": "Guadalajara" },
-    { "num": 3,  "round": "Group", "group": "A", "md": 8,  "date": "2026-06-18", "team1": "Czechia",              "team2": "South Africa",         "score": [1, 1], "venue": "Atlanta" },
-    { "num": 4,  "round": "Group", "group": "A", "md": 8,  "date": "2026-06-18", "team1": "Mexico",               "team2": "South Korea",          "score": [1, 0], "venue": "Guadalajara" },
-    { "num": 5,  "round": "Group", "group": "A", "md": 14, "date": "2026-06-24", "team1": "Czechia",              "team2": "Mexico",               "score": [0, 3], "venue": "Mexico City" },
-    { "num": 6,  "round": "Group", "group": "A", "md": 14, "date": "2026-06-24", "team1": "South Africa",         "team2": "South Korea",          "score": [1, 0], "venue": "Monterrey" },
-    { "num": 7,  "round": "Group", "group": "B", "md": 2,  "date": "2026-06-12", "team1": "Canada",               "team2": "Bosnia & Herzegovina", "score": [1, 1], "venue": "Toronto" },
-    { "num": 8,  "round": "Group", "group": "B", "md": 3,  "date": "2026-06-13", "team1": "Qatar",                "team2": "Switzerland",          "score": [1, 1], "venue": "Santa Clara" },
-    { "num": 9,  "round": "Group", "group": "B", "md": 8,  "date": "2026-06-18", "team1": "Switzerland",          "team2": "Bosnia & Herzegovina", "score": [4, 1], "venue": "Los Angeles" },
-    { "num": 10, "round": "Group", "group": "B", "md": 8,  "date": "2026-06-18", "team1": "Canada",               "team2": "Qatar",                "score": [6, 0], "venue": "Vancouver" },
-    { "num": 11, "round": "Group", "group": "B", "md": 14, "date": "2026-06-24", "team1": "Switzerland",          "team2": "Canada",               "score": [3, 1], "venue": "Vancouver" },
-    { "num": 12, "round": "Group", "group": "B", "md": 14, "date": "2026-06-24", "team1": "Bosnia & Herzegovina", "team2": "Qatar",                "score": [3, 1], "venue": "Seattle" },
-    { "num": 13, "round": "Group", "group": "C", "md": 3,  "date": "2026-06-13", "team1": "Brazil",               "team2": "Morocco",              "score": [1, 1], "venue": "East Rutherford" },
-    { "num": 14, "round": "Group", "group": "C", "md": 3,  "date": "2026-06-13", "team1": "Haiti",                "team2": "Scotland",             "score": [0, 1], "venue": "Foxborough" },
-    { "num": 15, "round": "Group", "group": "C", "md": 9,  "date": "2026-06-19", "team1": "Scotland",             "team2": "Morocco",              "score": [0, 1], "venue": "Foxborough" },
-    { "num": 16, "round": "Group", "group": "C", "md": 9,  "date": "2026-06-19", "team1": "Brazil",               "team2": "Haiti",                "score": [3, 0], "venue": "Philadelphia" },
-    { "num": 17, "round": "Group", "group": "C", "md": 14, "date": "2026-06-24", "team1": "Scotland",             "team2": "Brazil",               "score": [0, 3], "venue": "Miami" },
-    { "num": 18, "round": "Group", "group": "C", "md": 14, "date": "2026-06-24", "team1": "Morocco",              "team2": "Haiti",                "score": [4, 2], "venue": "Atlanta" },
-    { "num": 19, "round": "Group", "group": "D", "md": 2,  "date": "2026-06-12", "team1": "USA",                  "team2": "Paraguay",             "score": [4, 1], "venue": "Los Angeles" },
-    { "num": 20, "round": "Group", "group": "D", "md": 3,  "date": "2026-06-13", "team1": "Australia",            "team2": "Turkey",               "score": [2, 0], "venue": "Vancouver" },
-    { "num": 21, "round": "Group", "group": "D", "md": 9,  "date": "2026-06-19", "team1": "USA",                  "team2": "Australia",            "score": [2, 0], "venue": "Seattle" },
-    { "num": 22, "round": "Group", "group": "D", "md": 9,  "date": "2026-06-19", "team1": "Turkey",               "team2": "Paraguay",             "score": [0, 1], "venue": "Santa Clara" },
-    { "num": 23, "round": "Group", "group": "D", "md": 15, "date": "2026-06-25", "team1": "Turkey",               "team2": "USA",                  "score": [3, 2], "venue": "Los Angeles" },
-    { "num": 24, "round": "Group", "group": "D", "md": 15, "date": "2026-06-25", "team1": "Paraguay",             "team2": "Australia",            "score": [0, 0], "venue": "Santa Clara" },
-    { "num": 25, "round": "Group", "group": "E", "md": 4,  "date": "2026-06-14", "team1": "Germany",              "team2": "Curaçao",              "score": [7, 1], "venue": "Houston" },
-    { "num": 26, "round": "Group", "group": "E", "md": 4,  "date": "2026-06-14", "team1": "Ivory Coast",          "team2": "Ecuador",              "score": [1, 0], "venue": "Philadelphia" },
-    { "num": 27, "round": "Group", "group": "E", "md": 10, "date": "2026-06-20", "team1": "Germany",              "team2": "Ivory Coast",          "score": [2, 1], "venue": "Toronto" },
-    { "num": 28, "round": "Group", "group": "E", "md": 10, "date": "2026-06-20", "team1": "Ecuador",              "team2": "Curaçao",              "score": [0, 0], "venue": "Kansas City" },
-    { "num": 29, "round": "Group", "group": "E", "md": 15, "date": "2026-06-25", "team1": "Curaçao",              "team2": "Ivory Coast",          "score": [0, 2], "venue": "Philadelphia" },
-    { "num": 30, "round": "Group", "group": "E", "md": 15, "date": "2026-06-25", "team1": "Ecuador",              "team2": "Germany",              "score": [2, 1], "venue": "East Rutherford" },
-    { "num": 31, "round": "Group", "group": "F", "md": 4,  "date": "2026-06-14", "team1": "Netherlands",          "team2": "Japan",                "score": [2, 2], "venue": "Arlington" },
-    { "num": 32, "round": "Group", "group": "F", "md": 4,  "date": "2026-06-14", "team1": "Sweden",               "team2": "Tunisia",              "score": [5, 1], "venue": "Monterrey" },
-    { "num": 33, "round": "Group", "group": "F", "md": 10, "date": "2026-06-20", "team1": "Netherlands",          "team2": "Sweden",               "score": [5, 1], "venue": "Houston" },
-    { "num": 34, "round": "Group", "group": "F", "md": 10, "date": "2026-06-20", "team1": "Tunisia",              "team2": "Japan",                "score": [0, 4], "venue": "Monterrey" },
-    { "num": 35, "round": "Group", "group": "F", "md": 15, "date": "2026-06-25", "team1": "Japan",                "team2": "Sweden",               "score": [1, 1], "venue": "Arlington" },
-    { "num": 36, "round": "Group", "group": "F", "md": 15, "date": "2026-06-25", "team1": "Tunisia",              "team2": "Netherlands",          "score": [1, 3], "venue": "Kansas City" },
-    { "num": 37, "round": "Group", "group": "G", "md": 5,  "date": "2026-06-15", "team1": "Belgium",              "team2": "Egypt",                "score": [1, 1], "venue": "Seattle" },
-    { "num": 38, "round": "Group", "group": "G", "md": 5,  "date": "2026-06-15", "team1": "Iran",                 "team2": "New Zealand",          "score": [2, 2], "venue": "Los Angeles" },
-    { "num": 39, "round": "Group", "group": "G", "md": 11, "date": "2026-06-21", "team1": "Belgium",              "team2": "Iran",                 "score": [0, 0], "venue": "Los Angeles" },
-    { "num": 40, "round": "Group", "group": "G", "md": 11, "date": "2026-06-21", "team1": "New Zealand",          "team2": "Egypt",                "score": [1, 3], "venue": "Vancouver" },
-    { "num": 41, "round": "Group", "group": "G", "md": 16, "date": "2026-06-26", "team1": "Egypt",                "team2": "Iran",                 "score": [1, 1], "venue": "Seattle" },
-    { "num": 42, "round": "Group", "group": "G", "md": 16, "date": "2026-06-26", "team1": "New Zealand",          "team2": "Belgium",              "score": [1, 5], "venue": "Vancouver" },
-    { "num": 43, "round": "Group", "group": "H", "md": 5,  "date": "2026-06-15", "team1": "Spain",                "team2": "Cape Verde",           "score": [0, 0], "venue": "Atlanta" },
-    { "num": 44, "round": "Group", "group": "H", "md": 5,  "date": "2026-06-15", "team1": "Saudi Arabia",         "team2": "Uruguay",              "score": [1, 1], "venue": "Miami" },
-    { "num": 45, "round": "Group", "group": "H", "md": 11, "date": "2026-06-21", "team1": "Spain",                "team2": "Saudi Arabia",         "score": [4, 0], "venue": "Atlanta" },
-    { "num": 46, "round": "Group", "group": "H", "md": 11, "date": "2026-06-21", "team1": "Uruguay",              "team2": "Cape Verde",           "score": [2, 2], "venue": "Miami" },
-    { "num": 47, "round": "Group", "group": "H", "md": 16, "date": "2026-06-26", "team1": "Cape Verde",           "team2": "Saudi Arabia",         "score": [0, 0], "venue": "Houston" },
-    { "num": 48, "round": "Group", "group": "H", "md": 16, "date": "2026-06-26", "team1": "Uruguay",              "team2": "Spain",                "score": [0, 1], "venue": "Guadalajara" },
-    { "num": 49, "round": "Group", "group": "I", "md": 6,  "date": "2026-06-16", "team1": "France",               "team2": "Senegal",              "score": [3, 1], "venue": "East Rutherford" },
-    { "num": 50, "round": "Group", "group": "I", "md": 6,  "date": "2026-06-16", "team1": "Iraq",                 "team2": "Norway",               "score": [1, 4], "venue": "Foxborough" },
-    { "num": 51, "round": "Group", "group": "I", "md": 12, "date": "2026-06-22", "team1": "France",               "team2": "Iraq",                 "score": [3, 0], "venue": "Philadelphia" },
-    { "num": 52, "round": "Group", "group": "I", "md": 12, "date": "2026-06-22", "team1": "Norway",               "team2": "Senegal",              "score": [3, 2], "venue": "East Rutherford" },
-    { "num": 53, "round": "Group", "group": "I", "md": 16, "date": "2026-06-26", "team1": "Norway",               "team2": "France",               "score": [4, 1], "venue": "Foxborough" },
-    { "num": 54, "round": "Group", "group": "I", "md": 16, "date": "2026-06-26", "team1": "Senegal",              "team2": "Iraq",                 "score": [5, 0], "venue": "Toronto" },
-    { "num": 55, "round": "Group", "group": "J", "md": 6,  "date": "2026-06-16", "team1": "Argentina",            "team2": "Algeria",              "score": [3, 0], "venue": "Kansas City" },
-    { "num": 56, "round": "Group", "group": "J", "md": 6,  "date": "2026-06-16", "team1": "Austria",              "team2": "Jordan",               "score": [3, 1], "venue": "Santa Clara" },
-    { "num": 57, "round": "Group", "group": "J", "md": 12, "date": "2026-06-22", "team1": "Argentina",            "team2": "Austria",              "score": [2, 0], "venue": "Arlington" },
-    { "num": 58, "round": "Group", "group": "J", "md": 12, "date": "2026-06-22", "team1": "Jordan",               "team2": "Algeria",              "score": [1, 2], "venue": "Santa Clara" },
-    { "num": 59, "round": "Group", "group": "J", "md": 17, "date": "2026-06-27", "team1": "Algeria",              "team2": "Austria",              "score": [3, 3], "venue": "Kansas City" },
-    { "num": 60, "round": "Group", "group": "J", "md": 17, "date": "2026-06-27", "team1": "Jordan",               "team2": "Argentina",            "score": [1, 3], "venue": "Arlington" },
-    { "num": 61, "round": "Group", "group": "K", "md": 7,  "date": "2026-06-17", "team1": "Portugal",             "team2": "DR Congo",             "score": [1, 1], "venue": "Houston" },
-    { "num": 62, "round": "Group", "group": "K", "md": 7,  "date": "2026-06-17", "team1": "Uzbekistan",           "team2": "Colombia",             "score": [1, 3], "venue": "Mexico City" },
-    { "num": 63, "round": "Group", "group": "K", "md": 13, "date": "2026-06-23", "team1": "Portugal",             "team2": "Uzbekistan",           "score": [5, 0], "venue": "Houston" },
-    { "num": 64, "round": "Group", "group": "K", "md": 13, "date": "2026-06-23", "team1": "Colombia",             "team2": "DR Congo",             "score": [1, 0], "venue": "Guadalajara" },
-    { "num": 65, "round": "Group", "group": "K", "md": 17, "date": "2026-06-27", "team1": "Colombia",             "team2": "Portugal",             "score": [0, 0], "venue": "Miami" },
-    { "num": 66, "round": "Group", "group": "K", "md": 17, "date": "2026-06-27", "team1": "DR Congo",             "team2": "Uzbekistan",           "score": [3, 1], "venue": "Atlanta" },
-    { "num": 67, "round": "Group", "group": "L", "md": 7,  "date": "2026-06-17", "team1": "England",              "team2": "Croatia",              "score": [4, 2], "venue": "Arlington" },
-    { "num": 68, "round": "Group", "group": "L", "md": 7,  "date": "2026-06-17", "team1": "Ghana",                "team2": "Panama",               "score": [1, 0], "venue": "Toronto" },
-    { "num": 69, "round": "Group", "group": "L", "md": 13, "date": "2026-06-23", "team1": "England",              "team2": "Ghana",                "score": [0, 0], "venue": "Foxborough" },
-    { "num": 70, "round": "Group", "group": "L", "md": 13, "date": "2026-06-23", "team1": "Panama",               "team2": "Croatia",              "score": [0, 1], "venue": "Toronto" },
-    { "num": 71, "round": "Group", "group": "L", "md": 17, "date": "2026-06-27", "team1": "Panama",               "team2": "England",              "score": [0, 2], "venue": "East Rutherford" },
-    { "num": 72, "round": "Group", "group": "L", "md": 17, "date": "2026-06-27", "team1": "Croatia",              "team2": "Ghana",                "score": [2, 1], "venue": "Philadelphia" },
-    { "num": 73, "round": "R32", "date": "2026-06-28", "team1": "2A",      "team2": "2B",           "score": [0, 1], "venue": "Los Angeles" },
-    { "num": 74, "round": "R32", "date": "2026-06-29", "team1": "Germany", "team2": "3A/B/C/D/F",  "score": [1, 1], "wonOnPens": "team2", "venue": "Foxborough" },
-    { "num": 75, "round": "R32", "date": "2026-06-29", "team1": "1F",      "team2": "2C",           "score": [1, 1], "wonOnPens": "team2", "venue": "Monterrey" },
-    { "num": 76, "round": "R32", "date": "2026-06-29", "team1": "1C",      "team2": "2F",           "score": [2, 1], "venue": "Houston" },
-    { "num": 77, "round": "R32", "date": "2026-06-30", "team1": "1I",      "team2": "3C/D/F/G/H",  "score": null, "venue": "East Rutherford" },
-    { "num": 78, "round": "R32", "date": "2026-06-30", "team1": "2E",      "team2": "2I",           "score": null, "venue": "Arlington" },
-    { "num": 79, "round": "R32", "date": "2026-06-30", "team1": "Mexico",  "team2": "3C/E/F/H/I",  "score": null, "venue": "Mexico City" },
-    { "num": 80, "round": "R32", "date": "2026-07-01", "team1": "1L",      "team2": "3E/H/I/J/K",  "score": null, "venue": "Atlanta" },
-    { "num": 81, "round": "R32", "date": "2026-07-01", "team1": "USA",     "team2": "3B/E/F/I/J",  "score": null, "venue": "Santa Clara" },
-    { "num": 82, "round": "R32", "date": "2026-07-01", "team1": "1G",      "team2": "3A/E/H/I/J",  "score": null, "venue": "Seattle" },
-    { "num": 83, "round": "R32", "date": "2026-07-02", "team1": "2K",      "team2": "2L",           "score": null, "venue": "Toronto" },
-    { "num": 84, "round": "R32", "date": "2026-07-02", "team1": "1H",      "team2": "2J",           "score": null, "venue": "Los Angeles" },
-    { "num": 85, "round": "R32", "date": "2026-07-02", "team1": "1B",      "team2": "3E/F/G/I/J",  "score": null, "venue": "Vancouver" },
-    { "num": 86, "round": "R32", "date": "2026-07-03", "team1": "1J",      "team2": "2H",           "score": null, "venue": "Miami" },
-    { "num": 87, "round": "R32", "date": "2026-07-03", "team1": "1K",      "team2": "3D/E/I/J/L",  "score": null, "venue": "Kansas City" },
-    { "num": 88, "round": "R32", "date": "2026-07-03", "team1": "2D",      "team2": "2G",           "score": null, "venue": "Arlington" },
-    { "num": 89,  "round": "R16",   "date": "2026-07-04", "team1": "W74",  "team2": "W77",  "score": null, "venue": "Philadelphia" },
-    { "num": 90,  "round": "R16",   "date": "2026-07-04", "team1": "W73",  "team2": "W75",  "score": null, "venue": "Houston" },
-    { "num": 91,  "round": "R16",   "date": "2026-07-05", "team1": "W76",  "team2": "W78",  "score": null, "venue": "East Rutherford" },
-    { "num": 92,  "round": "R16",   "date": "2026-07-05", "team1": "W79",  "team2": "W80",  "score": null, "venue": "Mexico City" },
-    { "num": 93,  "round": "R16",   "date": "2026-07-06", "team1": "W83",  "team2": "W84",  "score": null, "venue": "Arlington" },
-    { "num": 94,  "round": "R16",   "date": "2026-07-06", "team1": "W81",  "team2": "W82",  "score": null, "venue": "Seattle" },
-    { "num": 95,  "round": "R16",   "date": "2026-07-07", "team1": "W86",  "team2": "W88",  "score": null, "venue": "Atlanta" },
-    { "num": 96,  "round": "R16",   "date": "2026-07-07", "team1": "W85",  "team2": "W87",  "score": null, "venue": "Vancouver" },
-    { "num": 97,  "round": "QF",    "date": "2026-07-09", "team1": "W89",  "team2": "W90",  "score": null, "venue": "Foxborough" },
-    { "num": 98,  "round": "QF",    "date": "2026-07-10", "team1": "W93",  "team2": "W94",  "score": null, "venue": "Los Angeles" },
-    { "num": 99,  "round": "QF",    "date": "2026-07-11", "team1": "W91",  "team2": "W92",  "score": null, "venue": "Miami" },
-    { "num": 100, "round": "QF",    "date": "2026-07-11", "team1": "W95",  "team2": "W96",  "score": null, "venue": "Kansas City" },
-    { "num": 101, "round": "SF",    "date": "2026-07-14", "team1": "W97",  "team2": "W98",  "score": null, "venue": "Arlington" },
-    { "num": 102, "round": "SF",    "date": "2026-07-15", "team1": "W99",  "team2": "W100", "score": null, "venue": "Atlanta" },
-    { "num": 103, "round": "3rd",   "date": "2026-07-18", "team1": "L101", "team2": "L102", "score": null, "venue": "Miami" },
-    { "num": 104, "round": "Final", "date": "2026-07-19", "team1": "W101", "team2": "W102", "score": null, "venue": "East Rutherford" }
+    {
+      "num": 1,
+      "round": "Group",
+      "group": "A",
+      "md": 1,
+      "date": "2026-06-11",
+      "team1": "Mexico",
+      "team2": "South Africa",
+      "score": [
+        2,
+        0
+      ],
+      "venue": "Mexico City"
+    },
+    {
+      "num": 2,
+      "round": "Group",
+      "group": "A",
+      "md": 1,
+      "date": "2026-06-11",
+      "team1": "South Korea",
+      "team2": "Czechia",
+      "score": [
+        2,
+        1
+      ],
+      "venue": "Guadalajara"
+    },
+    {
+      "num": 3,
+      "round": "Group",
+      "group": "A",
+      "md": 8,
+      "date": "2026-06-18",
+      "team1": "Czechia",
+      "team2": "South Africa",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "Atlanta"
+    },
+    {
+      "num": 4,
+      "round": "Group",
+      "group": "A",
+      "md": 8,
+      "date": "2026-06-18",
+      "team1": "Mexico",
+      "team2": "South Korea",
+      "score": [
+        1,
+        0
+      ],
+      "venue": "Guadalajara"
+    },
+    {
+      "num": 5,
+      "round": "Group",
+      "group": "A",
+      "md": 14,
+      "date": "2026-06-24",
+      "team1": "Czechia",
+      "team2": "Mexico",
+      "score": [
+        0,
+        3
+      ],
+      "venue": "Mexico City"
+    },
+    {
+      "num": 6,
+      "round": "Group",
+      "group": "A",
+      "md": 14,
+      "date": "2026-06-24",
+      "team1": "South Africa",
+      "team2": "South Korea",
+      "score": [
+        1,
+        0
+      ],
+      "venue": "Monterrey"
+    },
+    {
+      "num": 7,
+      "round": "Group",
+      "group": "B",
+      "md": 2,
+      "date": "2026-06-12",
+      "team1": "Canada",
+      "team2": "Bosnia & Herzegovina",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "Toronto"
+    },
+    {
+      "num": 8,
+      "round": "Group",
+      "group": "B",
+      "md": 3,
+      "date": "2026-06-13",
+      "team1": "Qatar",
+      "team2": "Switzerland",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "Santa Clara"
+    },
+    {
+      "num": 9,
+      "round": "Group",
+      "group": "B",
+      "md": 8,
+      "date": "2026-06-18",
+      "team1": "Switzerland",
+      "team2": "Bosnia & Herzegovina",
+      "score": [
+        4,
+        1
+      ],
+      "venue": "Los Angeles"
+    },
+    {
+      "num": 10,
+      "round": "Group",
+      "group": "B",
+      "md": 8,
+      "date": "2026-06-18",
+      "team1": "Canada",
+      "team2": "Qatar",
+      "score": [
+        6,
+        0
+      ],
+      "venue": "Vancouver"
+    },
+    {
+      "num": 11,
+      "round": "Group",
+      "group": "B",
+      "md": 14,
+      "date": "2026-06-24",
+      "team1": "Switzerland",
+      "team2": "Canada",
+      "score": [
+        2,
+        1
+      ],
+      "venue": "Vancouver"
+    },
+    {
+      "num": 12,
+      "round": "Group",
+      "group": "B",
+      "md": 14,
+      "date": "2026-06-24",
+      "team1": "Bosnia & Herzegovina",
+      "team2": "Qatar",
+      "score": [
+        3,
+        1
+      ],
+      "venue": "Seattle"
+    },
+    {
+      "num": 13,
+      "round": "Group",
+      "group": "C",
+      "md": 3,
+      "date": "2026-06-13",
+      "team1": "Brazil",
+      "team2": "Morocco",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "East Rutherford"
+    },
+    {
+      "num": 14,
+      "round": "Group",
+      "group": "C",
+      "md": 3,
+      "date": "2026-06-13",
+      "team1": "Haiti",
+      "team2": "Scotland",
+      "score": [
+        0,
+        1
+      ],
+      "venue": "Foxborough"
+    },
+    {
+      "num": 15,
+      "round": "Group",
+      "group": "C",
+      "md": 9,
+      "date": "2026-06-19",
+      "team1": "Scotland",
+      "team2": "Morocco",
+      "score": [
+        0,
+        1
+      ],
+      "venue": "Foxborough"
+    },
+    {
+      "num": 16,
+      "round": "Group",
+      "group": "C",
+      "md": 9,
+      "date": "2026-06-19",
+      "team1": "Brazil",
+      "team2": "Haiti",
+      "score": [
+        3,
+        0
+      ],
+      "venue": "Philadelphia"
+    },
+    {
+      "num": 17,
+      "round": "Group",
+      "group": "C",
+      "md": 14,
+      "date": "2026-06-24",
+      "team1": "Scotland",
+      "team2": "Brazil",
+      "score": [
+        0,
+        3
+      ],
+      "venue": "Miami"
+    },
+    {
+      "num": 18,
+      "round": "Group",
+      "group": "C",
+      "md": 14,
+      "date": "2026-06-24",
+      "team1": "Morocco",
+      "team2": "Haiti",
+      "score": [
+        4,
+        2
+      ],
+      "venue": "Atlanta"
+    },
+    {
+      "num": 19,
+      "round": "Group",
+      "group": "D",
+      "md": 2,
+      "date": "2026-06-12",
+      "team1": "USA",
+      "team2": "Paraguay",
+      "score": [
+        4,
+        1
+      ],
+      "venue": "Los Angeles"
+    },
+    {
+      "num": 20,
+      "round": "Group",
+      "group": "D",
+      "md": 3,
+      "date": "2026-06-13",
+      "team1": "Australia",
+      "team2": "Turkey",
+      "score": [
+        2,
+        0
+      ],
+      "venue": "Vancouver"
+    },
+    {
+      "num": 21,
+      "round": "Group",
+      "group": "D",
+      "md": 9,
+      "date": "2026-06-19",
+      "team1": "USA",
+      "team2": "Australia",
+      "score": [
+        2,
+        0
+      ],
+      "venue": "Seattle"
+    },
+    {
+      "num": 22,
+      "round": "Group",
+      "group": "D",
+      "md": 9,
+      "date": "2026-06-19",
+      "team1": "Turkey",
+      "team2": "Paraguay",
+      "score": [
+        0,
+        1
+      ],
+      "venue": "Santa Clara"
+    },
+    {
+      "num": 23,
+      "round": "Group",
+      "group": "D",
+      "md": 15,
+      "date": "2026-06-25",
+      "team1": "Turkey",
+      "team2": "USA",
+      "score": [
+        3,
+        2
+      ],
+      "venue": "Los Angeles"
+    },
+    {
+      "num": 24,
+      "round": "Group",
+      "group": "D",
+      "md": 15,
+      "date": "2026-06-25",
+      "team1": "Paraguay",
+      "team2": "Australia",
+      "score": [
+        0,
+        0
+      ],
+      "venue": "Santa Clara"
+    },
+    {
+      "num": 25,
+      "round": "Group",
+      "group": "E",
+      "md": 4,
+      "date": "2026-06-14",
+      "team1": "Germany",
+      "team2": "Curaçao",
+      "score": [
+        7,
+        1
+      ],
+      "venue": "Houston"
+    },
+    {
+      "num": 26,
+      "round": "Group",
+      "group": "E",
+      "md": 4,
+      "date": "2026-06-14",
+      "team1": "Ivory Coast",
+      "team2": "Ecuador",
+      "score": [
+        1,
+        0
+      ],
+      "venue": "Philadelphia"
+    },
+    {
+      "num": 27,
+      "round": "Group",
+      "group": "E",
+      "md": 10,
+      "date": "2026-06-20",
+      "team1": "Germany",
+      "team2": "Ivory Coast",
+      "score": [
+        2,
+        1
+      ],
+      "venue": "Toronto"
+    },
+    {
+      "num": 28,
+      "round": "Group",
+      "group": "E",
+      "md": 10,
+      "date": "2026-06-20",
+      "team1": "Ecuador",
+      "team2": "Curaçao",
+      "score": [
+        0,
+        0
+      ],
+      "venue": "Kansas City"
+    },
+    {
+      "num": 29,
+      "round": "Group",
+      "group": "E",
+      "md": 15,
+      "date": "2026-06-25",
+      "team1": "Curaçao",
+      "team2": "Ivory Coast",
+      "score": [
+        0,
+        2
+      ],
+      "venue": "Philadelphia"
+    },
+    {
+      "num": 30,
+      "round": "Group",
+      "group": "E",
+      "md": 15,
+      "date": "2026-06-25",
+      "team1": "Ecuador",
+      "team2": "Germany",
+      "score": [
+        2,
+        1
+      ],
+      "venue": "East Rutherford"
+    },
+    {
+      "num": 31,
+      "round": "Group",
+      "group": "F",
+      "md": 4,
+      "date": "2026-06-14",
+      "team1": "Netherlands",
+      "team2": "Japan",
+      "score": [
+        2,
+        2
+      ],
+      "venue": "Arlington"
+    },
+    {
+      "num": 32,
+      "round": "Group",
+      "group": "F",
+      "md": 4,
+      "date": "2026-06-14",
+      "team1": "Sweden",
+      "team2": "Tunisia",
+      "score": [
+        5,
+        1
+      ],
+      "venue": "Monterrey"
+    },
+    {
+      "num": 33,
+      "round": "Group",
+      "group": "F",
+      "md": 10,
+      "date": "2026-06-20",
+      "team1": "Netherlands",
+      "team2": "Sweden",
+      "score": [
+        5,
+        1
+      ],
+      "venue": "Houston"
+    },
+    {
+      "num": 34,
+      "round": "Group",
+      "group": "F",
+      "md": 10,
+      "date": "2026-06-20",
+      "team1": "Tunisia",
+      "team2": "Japan",
+      "score": [
+        0,
+        4
+      ],
+      "venue": "Monterrey"
+    },
+    {
+      "num": 35,
+      "round": "Group",
+      "group": "F",
+      "md": 15,
+      "date": "2026-06-25",
+      "team1": "Japan",
+      "team2": "Sweden",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "Arlington"
+    },
+    {
+      "num": 36,
+      "round": "Group",
+      "group": "F",
+      "md": 15,
+      "date": "2026-06-25",
+      "team1": "Tunisia",
+      "team2": "Netherlands",
+      "score": [
+        1,
+        3
+      ],
+      "venue": "Kansas City"
+    },
+    {
+      "num": 37,
+      "round": "Group",
+      "group": "G",
+      "md": 5,
+      "date": "2026-06-15",
+      "team1": "Belgium",
+      "team2": "Egypt",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "Seattle"
+    },
+    {
+      "num": 38,
+      "round": "Group",
+      "group": "G",
+      "md": 5,
+      "date": "2026-06-15",
+      "team1": "Iran",
+      "team2": "New Zealand",
+      "score": [
+        2,
+        2
+      ],
+      "venue": "Los Angeles"
+    },
+    {
+      "num": 39,
+      "round": "Group",
+      "group": "G",
+      "md": 11,
+      "date": "2026-06-21",
+      "team1": "Belgium",
+      "team2": "Iran",
+      "score": [
+        0,
+        0
+      ],
+      "venue": "Los Angeles"
+    },
+    {
+      "num": 40,
+      "round": "Group",
+      "group": "G",
+      "md": 11,
+      "date": "2026-06-21",
+      "team1": "New Zealand",
+      "team2": "Egypt",
+      "score": [
+        1,
+        3
+      ],
+      "venue": "Vancouver"
+    },
+    {
+      "num": 41,
+      "round": "Group",
+      "group": "G",
+      "md": 16,
+      "date": "2026-06-26",
+      "team1": "Egypt",
+      "team2": "Iran",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "Seattle"
+    },
+    {
+      "num": 42,
+      "round": "Group",
+      "group": "G",
+      "md": 16,
+      "date": "2026-06-26",
+      "team1": "New Zealand",
+      "team2": "Belgium",
+      "score": [
+        1,
+        5
+      ],
+      "venue": "Vancouver"
+    },
+    {
+      "num": 43,
+      "round": "Group",
+      "group": "H",
+      "md": 5,
+      "date": "2026-06-15",
+      "team1": "Spain",
+      "team2": "Cape Verde",
+      "score": [
+        0,
+        0
+      ],
+      "venue": "Atlanta"
+    },
+    {
+      "num": 44,
+      "round": "Group",
+      "group": "H",
+      "md": 5,
+      "date": "2026-06-15",
+      "team1": "Saudi Arabia",
+      "team2": "Uruguay",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "Miami"
+    },
+    {
+      "num": 45,
+      "round": "Group",
+      "group": "H",
+      "md": 11,
+      "date": "2026-06-21",
+      "team1": "Spain",
+      "team2": "Saudi Arabia",
+      "score": [
+        4,
+        0
+      ],
+      "venue": "Atlanta"
+    },
+    {
+      "num": 46,
+      "round": "Group",
+      "group": "H",
+      "md": 11,
+      "date": "2026-06-21",
+      "team1": "Uruguay",
+      "team2": "Cape Verde",
+      "score": [
+        2,
+        2
+      ],
+      "venue": "Miami"
+    },
+    {
+      "num": 47,
+      "round": "Group",
+      "group": "H",
+      "md": 16,
+      "date": "2026-06-26",
+      "team1": "Cape Verde",
+      "team2": "Saudi Arabia",
+      "score": [
+        0,
+        0
+      ],
+      "venue": "Houston"
+    },
+    {
+      "num": 48,
+      "round": "Group",
+      "group": "H",
+      "md": 16,
+      "date": "2026-06-26",
+      "team1": "Uruguay",
+      "team2": "Spain",
+      "score": [
+        0,
+        1
+      ],
+      "venue": "Guadalajara"
+    },
+    {
+      "num": 49,
+      "round": "Group",
+      "group": "I",
+      "md": 6,
+      "date": "2026-06-16",
+      "team1": "France",
+      "team2": "Senegal",
+      "score": [
+        3,
+        1
+      ],
+      "venue": "East Rutherford"
+    },
+    {
+      "num": 50,
+      "round": "Group",
+      "group": "I",
+      "md": 6,
+      "date": "2026-06-16",
+      "team1": "Iraq",
+      "team2": "Norway",
+      "score": [
+        1,
+        4
+      ],
+      "venue": "Foxborough"
+    },
+    {
+      "num": 51,
+      "round": "Group",
+      "group": "I",
+      "md": 12,
+      "date": "2026-06-22",
+      "team1": "France",
+      "team2": "Iraq",
+      "score": [
+        3,
+        0
+      ],
+      "venue": "Philadelphia"
+    },
+    {
+      "num": 52,
+      "round": "Group",
+      "group": "I",
+      "md": 12,
+      "date": "2026-06-22",
+      "team1": "Norway",
+      "team2": "Senegal",
+      "score": [
+        3,
+        2
+      ],
+      "venue": "East Rutherford"
+    },
+    {
+      "num": 53,
+      "round": "Group",
+      "group": "I",
+      "md": 16,
+      "date": "2026-06-26",
+      "team1": "Norway",
+      "team2": "France",
+      "score": [
+        1,
+        4
+      ],
+      "venue": "Foxborough"
+    },
+    {
+      "num": 54,
+      "round": "Group",
+      "group": "I",
+      "md": 16,
+      "date": "2026-06-26",
+      "team1": "Senegal",
+      "team2": "Iraq",
+      "score": [
+        5,
+        0
+      ],
+      "venue": "Toronto"
+    },
+    {
+      "num": 55,
+      "round": "Group",
+      "group": "J",
+      "md": 6,
+      "date": "2026-06-16",
+      "team1": "Argentina",
+      "team2": "Algeria",
+      "score": [
+        3,
+        0
+      ],
+      "venue": "Kansas City"
+    },
+    {
+      "num": 56,
+      "round": "Group",
+      "group": "J",
+      "md": 6,
+      "date": "2026-06-16",
+      "team1": "Austria",
+      "team2": "Jordan",
+      "score": [
+        3,
+        1
+      ],
+      "venue": "Santa Clara"
+    },
+    {
+      "num": 57,
+      "round": "Group",
+      "group": "J",
+      "md": 12,
+      "date": "2026-06-22",
+      "team1": "Argentina",
+      "team2": "Austria",
+      "score": [
+        2,
+        0
+      ],
+      "venue": "Arlington"
+    },
+    {
+      "num": 58,
+      "round": "Group",
+      "group": "J",
+      "md": 12,
+      "date": "2026-06-22",
+      "team1": "Jordan",
+      "team2": "Algeria",
+      "score": [
+        1,
+        2
+      ],
+      "venue": "Santa Clara"
+    },
+    {
+      "num": 59,
+      "round": "Group",
+      "group": "J",
+      "md": 17,
+      "date": "2026-06-27",
+      "team1": "Algeria",
+      "team2": "Austria",
+      "score": [
+        3,
+        3
+      ],
+      "venue": "Kansas City"
+    },
+    {
+      "num": 60,
+      "round": "Group",
+      "group": "J",
+      "md": 17,
+      "date": "2026-06-27",
+      "team1": "Jordan",
+      "team2": "Argentina",
+      "score": [
+        1,
+        3
+      ],
+      "venue": "Arlington"
+    },
+    {
+      "num": 61,
+      "round": "Group",
+      "group": "K",
+      "md": 7,
+      "date": "2026-06-17",
+      "team1": "Portugal",
+      "team2": "DR Congo",
+      "score": [
+        1,
+        1
+      ],
+      "venue": "Houston"
+    },
+    {
+      "num": 62,
+      "round": "Group",
+      "group": "K",
+      "md": 7,
+      "date": "2026-06-17",
+      "team1": "Uzbekistan",
+      "team2": "Colombia",
+      "score": [
+        1,
+        3
+      ],
+      "venue": "Mexico City"
+    },
+    {
+      "num": 63,
+      "round": "Group",
+      "group": "K",
+      "md": 13,
+      "date": "2026-06-23",
+      "team1": "Portugal",
+      "team2": "Uzbekistan",
+      "score": [
+        5,
+        0
+      ],
+      "venue": "Houston"
+    },
+    {
+      "num": 64,
+      "round": "Group",
+      "group": "K",
+      "md": 13,
+      "date": "2026-06-23",
+      "team1": "Colombia",
+      "team2": "DR Congo",
+      "score": [
+        1,
+        0
+      ],
+      "venue": "Guadalajara"
+    },
+    {
+      "num": 65,
+      "round": "Group",
+      "group": "K",
+      "md": 17,
+      "date": "2026-06-27",
+      "team1": "Colombia",
+      "team2": "Portugal",
+      "score": [
+        0,
+        0
+      ],
+      "venue": "Miami"
+    },
+    {
+      "num": 66,
+      "round": "Group",
+      "group": "K",
+      "md": 17,
+      "date": "2026-06-27",
+      "team1": "DR Congo",
+      "team2": "Uzbekistan",
+      "score": [
+        3,
+        1
+      ],
+      "venue": "Atlanta"
+    },
+    {
+      "num": 67,
+      "round": "Group",
+      "group": "L",
+      "md": 7,
+      "date": "2026-06-17",
+      "team1": "England",
+      "team2": "Croatia",
+      "score": [
+        4,
+        2
+      ],
+      "venue": "Arlington"
+    },
+    {
+      "num": 68,
+      "round": "Group",
+      "group": "L",
+      "md": 7,
+      "date": "2026-06-17",
+      "team1": "Ghana",
+      "team2": "Panama",
+      "score": [
+        1,
+        0
+      ],
+      "venue": "Toronto"
+    },
+    {
+      "num": 69,
+      "round": "Group",
+      "group": "L",
+      "md": 13,
+      "date": "2026-06-23",
+      "team1": "England",
+      "team2": "Ghana",
+      "score": [
+        0,
+        0
+      ],
+      "venue": "Foxborough"
+    },
+    {
+      "num": 70,
+      "round": "Group",
+      "group": "L",
+      "md": 13,
+      "date": "2026-06-23",
+      "team1": "Panama",
+      "team2": "Croatia",
+      "score": [
+        0,
+        1
+      ],
+      "venue": "Toronto"
+    },
+    {
+      "num": 71,
+      "round": "Group",
+      "group": "L",
+      "md": 17,
+      "date": "2026-06-27",
+      "team1": "Panama",
+      "team2": "England",
+      "score": [
+        0,
+        2
+      ],
+      "venue": "East Rutherford"
+    },
+    {
+      "num": 72,
+      "round": "Group",
+      "group": "L",
+      "md": 17,
+      "date": "2026-06-27",
+      "team1": "Croatia",
+      "team2": "Ghana",
+      "score": [
+        2,
+        1
+      ],
+      "venue": "Philadelphia"
+    },
+    {
+      "num": 73,
+      "round": "R32",
+      "date": "2026-06-28",
+      "team1": "South Africa",
+      "team2": "Canada",
+      "score": [
+        0,
+        1
+      ],
+      "venue": "Los Angeles"
+    },
+    {
+      "num": 74,
+      "round": "R32",
+      "date": "2026-06-29",
+      "team1": "Germany",
+      "team2": "Paraguay",
+      "score": [
+        1,
+        1
+      ],
+      "wonOnPens": "team2",
+      "venue": "Foxborough"
+    },
+    {
+      "num": 75,
+      "round": "R32",
+      "date": "2026-06-29",
+      "team1": "Netherlands",
+      "team2": "Morocco",
+      "score": [
+        1,
+        1
+      ],
+      "wonOnPens": "team2",
+      "venue": "Monterrey"
+    },
+    {
+      "num": 76,
+      "round": "R32",
+      "date": "2026-06-29",
+      "team1": "Brazil",
+      "team2": "Japan",
+      "score": [
+        2,
+        1
+      ],
+      "venue": "Houston"
+    },
+    {
+      "num": 77,
+      "round": "R32",
+      "date": "2026-06-30",
+      "team1": "France",
+      "team2": "Sweden",
+      "score": [
+        3,
+        0
+      ],
+      "venue": "East Rutherford"
+    },
+    {
+      "num": 78,
+      "round": "R32",
+      "date": "2026-06-30",
+      "team1": "Ivory Coast",
+      "team2": "Norway",
+      "score": [
+        1,
+        2
+      ],
+      "venue": "Arlington"
+    },
+    {
+      "num": 79,
+      "round": "R32",
+      "date": "2026-06-30",
+      "team1": "Mexico",
+      "team2": "Ecuador",
+      "score": [
+        2,
+        0
+      ],
+      "venue": "Mexico City"
+    },
+    {
+      "num": 80,
+      "round": "R32",
+      "date": "2026-07-01",
+      "team1": "England",
+      "team2": "DR Congo",
+      "score": null,
+      "venue": "Atlanta"
+    },
+    {
+      "num": 81,
+      "round": "R32",
+      "date": "2026-07-01",
+      "team1": "USA",
+      "team2": "Bosnia & Herzegovina",
+      "score": null,
+      "venue": "Santa Clara"
+    },
+    {
+      "num": 82,
+      "round": "R32",
+      "date": "2026-07-01",
+      "team1": "Belgium",
+      "team2": "Senegal",
+      "score": null,
+      "venue": "Seattle"
+    },
+    {
+      "num": 83,
+      "round": "R32",
+      "date": "2026-07-02",
+      "team1": "Portugal",
+      "team2": "Croatia",
+      "score": null,
+      "venue": "Toronto"
+    },
+    {
+      "num": 84,
+      "round": "R32",
+      "date": "2026-07-02",
+      "team1": "Spain",
+      "team2": "Austria",
+      "score": null,
+      "venue": "Los Angeles"
+    },
+    {
+      "num": 85,
+      "round": "R32",
+      "date": "2026-07-02",
+      "team1": "Switzerland",
+      "team2": "Algeria",
+      "score": null,
+      "venue": "Vancouver"
+    },
+    {
+      "num": 86,
+      "round": "R32",
+      "date": "2026-07-03",
+      "team1": "Argentina",
+      "team2": "Cape Verde",
+      "score": null,
+      "venue": "Miami"
+    },
+    {
+      "num": 87,
+      "round": "R32",
+      "date": "2026-07-03",
+      "team1": "Colombia",
+      "team2": "Ghana",
+      "score": null,
+      "venue": "Kansas City"
+    },
+    {
+      "num": 88,
+      "round": "R32",
+      "date": "2026-07-03",
+      "team1": "Australia",
+      "team2": "Egypt",
+      "score": null,
+      "venue": "Arlington"
+    },
+    {
+      "num": 89,
+      "round": "R16",
+      "date": "2026-07-04",
+      "team1": "Paraguay",
+      "team2": "France",
+      "score": null,
+      "venue": "Philadelphia"
+    },
+    {
+      "num": 90,
+      "round": "R16",
+      "date": "2026-07-04",
+      "team1": "Canada",
+      "team2": "Morocco",
+      "score": null,
+      "venue": "Houston"
+    },
+    {
+      "num": 91,
+      "round": "R16",
+      "date": "2026-07-05",
+      "team1": "Brazil",
+      "team2": "Norway",
+      "score": null,
+      "venue": "East Rutherford"
+    },
+    {
+      "num": 92,
+      "round": "R16",
+      "date": "2026-07-05",
+      "team1": "Mexico",
+      "team2": "W80",
+      "score": null,
+      "venue": "Mexico City"
+    },
+    {
+      "num": 93,
+      "round": "R16",
+      "date": "2026-07-06",
+      "team1": "W83",
+      "team2": "W84",
+      "score": null,
+      "venue": "Arlington"
+    },
+    {
+      "num": 94,
+      "round": "R16",
+      "date": "2026-07-06",
+      "team1": "W81",
+      "team2": "W82",
+      "score": null,
+      "venue": "Seattle"
+    },
+    {
+      "num": 95,
+      "round": "R16",
+      "date": "2026-07-07",
+      "team1": "W86",
+      "team2": "W88",
+      "score": null,
+      "venue": "Atlanta"
+    },
+    {
+      "num": 96,
+      "round": "R16",
+      "date": "2026-07-07",
+      "team1": "W85",
+      "team2": "W87",
+      "score": null,
+      "venue": "Vancouver"
+    },
+    {
+      "num": 97,
+      "round": "QF",
+      "date": "2026-07-09",
+      "team1": "W89",
+      "team2": "W90",
+      "score": null,
+      "venue": "Foxborough"
+    },
+    {
+      "num": 98,
+      "round": "QF",
+      "date": "2026-07-10",
+      "team1": "W93",
+      "team2": "W94",
+      "score": null,
+      "venue": "Los Angeles"
+    },
+    {
+      "num": 99,
+      "round": "QF",
+      "date": "2026-07-11",
+      "team1": "W91",
+      "team2": "W92",
+      "score": null,
+      "venue": "Miami"
+    },
+    {
+      "num": 100,
+      "round": "QF",
+      "date": "2026-07-11",
+      "team1": "W95",
+      "team2": "W96",
+      "score": null,
+      "venue": "Kansas City"
+    },
+    {
+      "num": 101,
+      "round": "SF",
+      "date": "2026-07-14",
+      "team1": "W97",
+      "team2": "W98",
+      "score": null,
+      "venue": "Arlington"
+    },
+    {
+      "num": 102,
+      "round": "SF",
+      "date": "2026-07-15",
+      "team1": "W99",
+      "team2": "W100",
+      "score": null,
+      "venue": "Atlanta"
+    },
+    {
+      "num": 103,
+      "round": "3rd",
+      "date": "2026-07-18",
+      "team1": "L101",
+      "team2": "L102",
+      "score": null,
+      "venue": "Miami"
+    },
+    {
+      "num": 104,
+      "round": "Final",
+      "date": "2026-07-19",
+      "team1": "W101",
+      "team2": "W102",
+      "score": null,
+      "venue": "East Rutherford"
+    }
   ],
   "roundOf32Overrides": {
     "74": "Paraguay"
   },
   "entrants": [
-    { "name": "Wes",    "picks": ["France", "Netherlands", "Japan", "Czechia", "Australia"],   "random": "Brazil",      "paid": true },
-    { "name": "Thommo", "picks": ["France", "Portugal", "Uruguay", "Canada", "Scotland"],      "random": "England",     "paid": false },
-    { "name": "Max",    "picks": ["Spain", "Portugal", "Uruguay", "Ivory Coast", "Australia"], "random": "Netherlands", "paid": false },
-    { "name": "Joe",    "picks": ["France", "Portugal", "Senegal", "Canada", "Scotland"],      "random": "Spain",       "paid": false },
-    { "name": "Jaxon",  "picks": ["Spain", "Portugal", "Japan", "Ivory Coast", "DR Congo"],   "random": "Germany",     "paid": false },
-    { "name": "Toby",   "picks": ["France", "Portugal", "Mexico", "Egypt", "Scotland"],        "random": "Argentina",   "paid": true },
-    { "name": "Barney", "picks": ["Spain", "Netherlands", "Uruguay", "Canada", "Scotland"],    "random": "France",      "paid": false },
-    { "name": "Scott",  "picks": ["Spain", "Belgium", "Senegal", "South Korea", "Scotland"],  "random": "Portugal",    "paid": false }
+    {
+      "name": "Wes",
+      "picks": [
+        "France",
+        "Netherlands",
+        "Japan",
+        "Czechia",
+        "Australia"
+      ],
+      "random": "Brazil",
+      "paid": true
+    },
+    {
+      "name": "Thommo",
+      "picks": [
+        "France",
+        "Portugal",
+        "Uruguay",
+        "Canada",
+        "Scotland"
+      ],
+      "random": "England",
+      "paid": false
+    },
+    {
+      "name": "Max",
+      "picks": [
+        "Spain",
+        "Portugal",
+        "Uruguay",
+        "Ivory Coast",
+        "Australia"
+      ],
+      "random": "Netherlands",
+      "paid": false
+    },
+    {
+      "name": "Joe",
+      "picks": [
+        "France",
+        "Portugal",
+        "Senegal",
+        "Canada",
+        "Scotland"
+      ],
+      "random": "Spain",
+      "paid": false
+    },
+    {
+      "name": "Jaxon",
+      "picks": [
+        "Spain",
+        "Portugal",
+        "Japan",
+        "Ivory Coast",
+        "DR Congo"
+      ],
+      "random": "Germany",
+      "paid": false
+    },
+    {
+      "name": "Toby",
+      "picks": [
+        "France",
+        "Portugal",
+        "Mexico",
+        "Egypt",
+        "Scotland"
+      ],
+      "random": "Argentina",
+      "paid": true
+    },
+    {
+      "name": "Barney",
+      "picks": [
+        "Spain",
+        "Netherlands",
+        "Uruguay",
+        "Canada",
+        "Scotland"
+      ],
+      "random": "France",
+      "paid": false
+    },
+    {
+      "name": "Scott",
+      "picks": [
+        "Spain",
+        "Belgium",
+        "Senegal",
+        "South Korea",
+        "Scotland"
+      ],
+      "random": "Portugal",
+      "paid": false
+    }
   ]
 }
