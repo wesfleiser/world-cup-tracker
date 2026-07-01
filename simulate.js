@@ -33,59 +33,59 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / ESPN Betting, June 30 2026.
-   Post R32 Day 2: Netherlands eliminated (lost to Morocco on pens).
-   South Africa eliminated (lost to Canada 1-0).
-   Morocco and Canada odds shortened after upsets.
+   FanDuel / CBS Sports, July 1 2026.
+   Post R32 Day 3: France, Norway, Mexico won their R32 matches
+   (Sweden, Ivory Coast, Ecuador eliminated). Iran corrected to
+   the elimination floor (was mistakenly left at 50000 after
+   being knocked out in the group stage). Bosnia & Herzegovina,
+   Cape Verde, DR Congo repriced off the floor — they are alive
+   in R32, just long shots.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 320, Argentina: 400, Spain: 480, England: 580,
-  Brazil: 900, Portugal: 950,
-  Norway: 1800, Morocco: 2200,
+  France: 250, Argentina: 400, Spain: 650, England: 700,
+  Brazil: 950, Portugal: 1400,
+  Norway: 1800, Morocco: 2000,
   USA: 2800, Canada: 3500,
-  Colombia: 3800, Mexico: 4000,
-  Belgium: 5000,
+  Colombia: 3300, Mexico: 4000,
+  Belgium: 4000,
   Paraguay: 7000, Croatia: 8000,
-  Switzerland: 9000,
-  Australia: 14000, Austria: 14000, Sweden: 15000,
-  "Ivory Coast": 18000, Egypt: 25000, Algeria: 35000,
-  Iran: 50000, Senegal: 75000, Ghana: 75000,
-  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000,
-  "DR Congo": 250000, Uzbekistan: 250000,
+  Switzerland: 6600,
+  Australia: 25000, Austria: 30000,
+  Egypt: 30000, Algeria: 40000,
+  Senegal: 11000, Ghana: 37500,
+  "Bosnia & Herzegovina": 40000, "Cape Verde": 100000, "DR Congo": 100000,
   // Eliminated in group stage
-  "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
+  "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iran: 250000, Iraq: 250000,
   Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
-  "Saudi Arabia": 250000, Scotland: 250000,
-  "South Korea": 250000, Tunisia: 250000, Turkey: 250000, Uruguay: 250000,
+  "Saudi Arabia": 250000, Scotland: 250000, "South Korea": 250000,
+  Tunisia: 250000, Turkey: 250000, Uruguay: 250000, Uzbekistan: 250000,
   // Eliminated in R32
-  Germany: 250000, Japan: 250000, Netherlands: 250000, "South Africa": 250000,
+  Germany: 250000, "Ivory Coast": 250000, Japan: 250000, Netherlands: 250000,
+  "South Africa": 250000, Sweden: 250000,
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   R32 "to advance" lines — FanDuel, June 30 2026.
+   R32 "to advance" lines — FanDuel, July 1 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
    Completed matches removed: Germany/Paraguay ✓, Netherlands/Morocco ✓,
-   Brazil/Japan ✓, South Africa/Canada ✓.
+   Brazil/Japan ✓, South Africa/Canada ✓, France/Sweden ✓,
+   Ivory Coast/Norway ✓, Mexico/Ecuador ✓.
    When R32 is complete: clear this object and populate with
    R16 matchup lines using the same format.                    */
 const NEXT_ROUND_ODDS = {
-  // Jun 30 (today — in progress or upcoming)
-  "Ivory Coast|Norway":       [156, -190],
-  "France|Sweden":            [-950, 600],
-  "Mexico|Ecuador":           [-184, 150],
-  // Jul 1
-  "USA|Bosnia & Herzegovina": [-800, 530],
-  "Belgium|Senegal":          [-194, 158],
-  "England|DR Congo":         [-1200, 700],
+  // Jul 1 (today — in progress or upcoming)
+  "USA|Bosnia & Herzegovina": [-750, 490],
+  "Belgium|Senegal":          [-178, 144],
+  "England|DR Congo":         [-850, 550],
   // Jul 2
-  "Switzerland|Algeria":      [-340, 260],
-  "Croatia|Portugal":         [186, -235],
-  "Spain|Austria":            [-1200, 670],
+  "Switzerland|Algeria":      [-210, 172],
+  "Croatia|Portugal":         [220, -290],
+  "Spain|Austria":            [-900, 570],
   // Jul 3
-  "Argentina|Cape Verde":     [-2500, 1320],
-  "Australia|Egypt":          [114, -140],
-  "Ghana|Colombia":           [235, -300],
+  "Argentina|Cape Verde":     [-2000, 1100],
+  "Australia|Egypt":          [116, -142],
+  "Ghana|Colombia":           [370, -550],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
