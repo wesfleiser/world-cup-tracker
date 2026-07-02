@@ -33,25 +33,26 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / ESPN Betting, June 30 2026 (end of day).
-   R32 Day 3: France 3-0 Sweden, Norway 2-1 Ivory Coast, Mexico 2-0 Ecuador.
-   Ivory Coast, Sweden, Ecuador eliminated.
+   FanDuel / ESPN / Fox Sports Betting, July 2 2026 (mid-day).
+   R32 completed since last update: England 2-1 DR Congo, USA 2-0
+   Bosnia & Herzegovina, Belgium 3-2 Senegal.
+   Bosnia & Herzegovina, DR Congo, Senegal eliminated.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 280, Argentina: 390, Spain: 460, England: 560,
-  Brazil: 850, Portugal: 900,
-  Norway: 1600, Morocco: 2000,
-  USA: 2600, Canada: 3200,
-  Colombia: 3600, Mexico: 3500,
-  Belgium: 4500,
-  Paraguay: 6500, Croatia: 7500,
-  Switzerland: 8500,
-  Australia: 13000, Austria: 13000,
-  Egypt: 22000, Algeria: 32000,
-  Iran: 50000, Senegal: 75000, Ghana: 75000,
-  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000,
-  "DR Congo": 250000, Uzbekistan: 250000,
+  France: 260, Argentina: 400, Spain: 700, England: 700,
+  Brazil: 1000, Portugal: 1400,
+  Norway: 4000, Morocco: 2200,
+  USA: 2500, Canada: 20000,
+  Colombia: 3300, Mexico: 2700,
+  Belgium: 3500,
+  Paraguay: 20000, Croatia: 15000,
+  Switzerland: 7500,
+  Australia: 30000, Austria: 35000,
+  Egypt: 30000, Algeria: 50000,
+  Iran: 100000, Ghana: 40000,
+  "Cape Verde": 250000,
   // Eliminated in group stage
+  Uzbekistan: 250000,
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
   Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
   "Saudi Arabia": 250000, Scotland: 250000,
@@ -59,28 +60,26 @@ const OUTRIGHT_WIN_ODDS = {
   // Eliminated in R32
   Germany: 250000, Japan: 250000, Netherlands: 250000, "South Africa": 250000,
   "Ivory Coast": 250000, Sweden: 250000, Ecuador: 250000,
+  "Bosnia & Herzegovina": 250000, "DR Congo": 250000, Senegal: 250000,
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   R32 "to advance" lines — FanDuel, June 30 2026 (end of day).
+   R32 "to advance" lines — FanDuel, July 2 2026 (mid-day).
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   Completed today: France/Sweden ✓, Norway/Ivory Coast ✓, Mexico/Ecuador ✓.
+   Completed since last update: England/DR Congo ✓, USA/Bosnia &
+   Herzegovina ✓, Belgium/Senegal ✓ — removed below.
    When R32 is complete: clear this object and populate with
    R16 matchup lines using the same format.                    */
 const NEXT_ROUND_ODDS = {
-  // Jul 1
-  "USA|Bosnia & Herzegovina": [-800, 530],
-  "Belgium|Senegal":          [-194, 158],
-  "England|DR Congo":         [-1200, 700],
   // Jul 2
-  "Switzerland|Algeria":      [-340, 260],
-  "Croatia|Portugal":         [186, -235],
-  "Spain|Austria":            [-1200, 670],
+  "Switzerland|Algeria":      [-210, 172],
+  "Croatia|Portugal":         [220, -290],
+  "Spain|Austria":            [-900, 570],
   // Jul 3
-  "Argentina|Cape Verde":     [-2500, 1320],
-  "Australia|Egypt":          [114, -140],
-  "Ghana|Colombia":           [235, -300],
+  "Argentina|Cape Verde":     [-2000, 1100],
+  "Australia|Egypt":          [116, -142],
+  "Ghana|Colombia":           [370, -550],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
