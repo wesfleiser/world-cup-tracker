@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-07-02",
+    "lastUpdated": "2026-07-03",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -1220,7 +1220,10 @@
       "date": "2026-07-02",
       "team1": "Portugal",
       "team2": "Croatia",
-      "score": null,
+      "score": [
+        2,
+        1
+      ],
       "venue": "Toronto"
     },
     {
@@ -1229,7 +1232,10 @@
       "date": "2026-07-02",
       "team1": "Spain",
       "team2": "Austria",
-      "score": null,
+      "score": [
+        3,
+        0
+      ],
       "venue": "Los Angeles"
     },
     {
@@ -1238,7 +1244,10 @@
       "date": "2026-07-02",
       "team1": "Switzerland",
       "team2": "Algeria",
-      "score": null,
+      "score": [
+        2,
+        0
+      ],
       "venue": "Vancouver"
     },
     {
