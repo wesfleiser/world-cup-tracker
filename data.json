@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-07-04",
+    "lastUpdated": "2026-07-05",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -1292,7 +1292,10 @@
       "date": "2026-07-04",
       "team1": "Paraguay",
       "team2": "France",
-      "score": null,
+      "score": [
+        0,
+        1
+      ],
       "venue": "Philadelphia"
     },
     {
@@ -1301,7 +1304,10 @@
       "date": "2026-07-04",
       "team1": "Canada",
       "team2": "Morocco",
-      "score": null,
+      "score": [
+        0,
+        3
+      ],
       "venue": "Houston"
     },
     {
