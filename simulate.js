@@ -33,22 +33,26 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / ESPN Betting, June 30 2026 (end of day).
-   R32 Day 3: France 3-0 Sweden, Norway 2-1 Ivory Coast, Mexico 2-0 Ecuador.
-   Ivory Coast, Sweden, Ecuador eliminated.
+   FanDuel / CBS Sports / FOX Sports, July 5 2026.
+   R32 is complete; all 16 R16 teams set. Round of 16 in progress:
+   France beat Paraguay 1-0 and Morocco beat Canada 3-0 on July 4
+   (Paraguay, Canada eliminated). Also flooring Senegal, Ghana,
+   Croatia, Austria, Algeria, Australia (all lost in R32) and
+   correcting Iran, which was mistakenly left off the floor after
+   its group-stage exit.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 280, Argentina: 390, Spain: 460, England: 560,
-  Brazil: 850, Portugal: 900,
-  Norway: 1600, Morocco: 2000,
-  USA: 2600, Canada: 3200,
-  Colombia: 3600, Mexico: 3500,
+  France: 175, Argentina: 430, Spain: 550, England: 1000,
+  Brazil: 1100, Portugal: 1400,
+  Norway: 4000, Morocco: 2200,
+  USA: 2000, Canada: 250000,
+  Colombia: 2200, Mexico: 2700,
   Belgium: 4500,
-  Paraguay: 6500, Croatia: 7500,
-  Switzerland: 8500,
-  Australia: 13000, Austria: 13000,
-  Egypt: 22000, Algeria: 32000,
-  Iran: 50000, Senegal: 75000, Ghana: 75000,
+  Paraguay: 250000, Croatia: 250000,
+  Switzerland: 7000,
+  Australia: 250000, Austria: 250000,
+  Egypt: 25000, Algeria: 250000,
+  Iran: 250000, Senegal: 250000, Ghana: 250000,
   "Bosnia & Herzegovina": 250000, "Cape Verde": 250000,
   "DR Congo": 250000, Uzbekistan: 250000,
   // Eliminated in group stage
@@ -62,25 +66,23 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   R32 "to advance" lines — FanDuel, June 30 2026 (end of day).
+   R16 "to advance" lines — FanDuel/CBS Sports, July 5 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   Completed today: France/Sweden ✓, Norway/Ivory Coast ✓, Mexico/Ecuador ✓.
-   When R32 is complete: clear this object and populate with
-   R16 matchup lines using the same format.                    */
+   Paraguay/France ✓ and Canada/Morocco ✓ already played July 4
+   (dropped here; their outright odds are floored above instead).
+   When R16 is complete: clear this object and populate with
+   QF matchup lines using the same format.                     */
 const NEXT_ROUND_ODDS = {
-  // Jul 1
-  "USA|Bosnia & Herzegovina": [-800, 530],
-  "Belgium|Senegal":          [-194, 158],
-  "England|DR Congo":         [-1200, 700],
-  // Jul 2
-  "Switzerland|Algeria":      [-340, 260],
-  "Croatia|Portugal":         [186, -235],
-  "Spain|Austria":            [-1200, 670],
-  // Jul 3
-  "Argentina|Cape Verde":     [-2500, 1320],
-  "Australia|Egypt":          [114, -140],
-  "Ghana|Colombia":           [235, -300],
+  // Jul 5
+  "Brazil|Norway":     [-270, 205],
+  "Mexico|England":    [112, -136],
+  // Jul 6
+  "Portugal|Spain":    [178, -225],
+  "USA|Belgium":       [-104, -118],
+  // Jul 7
+  "Argentina|Egypt":   [-800, 540],
+  "Switzerland|Colombia": [136, -166],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
