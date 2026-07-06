@@ -33,56 +33,47 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / CBS Sports / FOX Sports, July 5 2026.
-   R32 is complete; all 16 R16 teams set. Round of 16 in progress:
-   France beat Paraguay 1-0 and Morocco beat Canada 3-0 on July 4
-   (Paraguay, Canada eliminated). Also flooring Senegal, Ghana,
-   Croatia, Austria, Algeria, Australia (all lost in R32) and
-   correcting Iran, which was mistakenly left off the floor after
-   its group-stage exit.
+   FanDuel / Fox Sports, July 6 2026 (QF day 1).
+   R32 complete. R16: France ✓ (beat Paraguay), Morocco ✓ (beat Canada),
+   Norway ✓ (beat Brazil). Today: Mexico/England, Spain/Portugal, USA/Belgium.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 175, Argentina: 430, Spain: 550, England: 1000,
-  Brazil: 1100, Portugal: 1400,
-  Norway: 4000, Morocco: 2200,
-  USA: 2000, Canada: 250000,
-  Colombia: 2200, Mexico: 2700,
-  Belgium: 4500,
-  Paraguay: 250000, Croatia: 250000,
-  Switzerland: 7000,
-  Australia: 250000, Austria: 250000,
-  Egypt: 25000, Algeria: 250000,
-  Iran: 250000, Senegal: 250000, Ghana: 250000,
-  "Bosnia & Herzegovina": 250000, "Cape Verde": 250000,
-  "DR Congo": 250000, Uzbekistan: 250000,
+  France: 160, Argentina: 440, Spain: 550,
+  Norway: 600, England: 950, Morocco: 1100,
+  Portugal: 1400, USA: 1600, Belgium: 1800,
+  Mexico: 2000, Colombia: 2200, Switzerland: 2800,
+  Egypt: 4500,
   // Eliminated in group stage
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
   Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
   "Saudi Arabia": 250000, Scotland: 250000,
   "South Korea": 250000, Tunisia: 250000, Turkey: 250000, Uruguay: 250000,
+  Iran: 250000, Uzbekistan: 250000,
   // Eliminated in R32
   Germany: 250000, Japan: 250000, Netherlands: 250000, "South Africa": 250000,
   "Ivory Coast": 250000, Sweden: 250000, Ecuador: 250000,
+  "Bosnia & Herzegovina": 250000, "DR Congo": 250000, Senegal: 250000,
+  Croatia: 250000, Austria: 250000, Algeria: 250000,
+  "Cape Verde": 250000, Ghana: 250000, Australia: 250000,
+  // Eliminated in R16
+  Paraguay: 250000, Canada: 250000, Brazil: 250000,
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   R16 "to advance" lines — FanDuel/CBS Sports, July 5 2026.
+   R16 "to advance" lines — FanDuel, July 6 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   Paraguay/France ✓ and Canada/Morocco ✓ already played July 4
-   (dropped here; their outright odds are floored above instead).
-   When R16 is complete: clear this object and populate with
-   QF matchup lines using the same format.                     */
+   Completed: France ✓, Morocco ✓, Norway ✓.
+   Remaining: Mexico/England (Jul 6), Spain/Portugal (Jul 6),
+   USA/Belgium (Jul 6), Argentina/Egypt (Jul 7), Colombia/Switzerland (Jul 7). */
 const NEXT_ROUND_ODDS = {
-  // Jul 5
-  "Brazil|Norway":     [-270, 205],
-  "Mexico|England":    [112, -136],
   // Jul 6
-  "Portugal|Spain":    [178, -225],
-  "USA|Belgium":       [-104, -118],
+  "Mexico|England":           [-104, -118],
+  "Spain|Portugal":           [-220, 178],
+  "USA|Belgium":              [-118, -104],
   // Jul 7
-  "Argentina|Egypt":   [-800, 540],
-  "Switzerland|Colombia": [136, -166],
+  "Argentina|Egypt":          [-800, 520],
+  "Colombia|Switzerland":     [-162, 135],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
