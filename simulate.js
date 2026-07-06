@@ -33,16 +33,16 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / Fox Sports, July 6 2026 (QF day 1).
-   R32 complete. R16: France ✓ (beat Paraguay), Morocco ✓ (beat Canada),
-   Norway ✓ (beat Brazil). Today: Mexico/England, Spain/Portugal, USA/Belgium.
-   Eliminated teams → 250000 (board floor).                    */
+   FanDuel, July 6 2026 (R16 day). R32 complete. R16 completed:
+   France ✓ (beat Paraguay), Morocco ✓ (beat Canada), Norway ✓
+   (beat Brazil). Still to play today: Mexico/England, Spain/
+   Portugal, USA/Belgium. Eliminated teams → 250000 (board floor). */
 const OUTRIGHT_WIN_ODDS = {
-  France: 160, Argentina: 440, Spain: 550,
-  Norway: 600, England: 950, Morocco: 1100,
-  Portugal: 1400, USA: 1600, Belgium: 1800,
-  Mexico: 2000, Colombia: 2200, Switzerland: 2800,
-  Egypt: 4500,
+  France: 170, Argentina: 470, Spain: 600,
+  Norway: 600, England: 500, Morocco: 1100,
+  Portugal: 1400, USA: 3000, Belgium: 5000,
+  Mexico: 2500, Colombia: 2500, Switzerland: 7000,
+  Egypt: 30000,
   // Eliminated in group stage
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
   Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
@@ -60,7 +60,8 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   R16 "to advance" lines — FanDuel, July 6 2026.
+   R16 "to advance" lines — FanDuel, July 6 2026 (confirmed unchanged
+   from this morning's snapshot).
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
    Completed: France ✓, Morocco ✓, Norway ✓.
