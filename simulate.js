@@ -33,16 +33,15 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / Fox Sports, July 6 2026 (QF day 1).
-   R32 complete. R16: France ✓ (beat Paraguay), Morocco ✓ (beat Canada),
-   Norway ✓ (beat Brazil). Today: Mexico/England, Spain/Portugal, USA/Belgium.
+   FanDuel / Fox Sports / Covers.com, July 8 2026 (QF field set).
+   R16 complete. QF field: France, Morocco, Spain, Belgium, Norway,
+   England, Argentina, Switzerland. Newly eliminated in R16: Mexico,
+   Portugal, USA, Egypt, Colombia.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 160, Argentina: 440, Spain: 550,
-  Norway: 600, England: 950, Morocco: 1100,
-  Portugal: 1400, USA: 1600, Belgium: 1800,
-  Mexico: 2000, Colombia: 2200, Switzerland: 2800,
-  Egypt: 4500,
+  France: 175, Spain: 370, Argentina: 390,
+  England: 480, Norway: 1400, Morocco: 2700,
+  Belgium: 3000, Switzerland: 3300,
   // Eliminated in group stage
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
   Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
@@ -57,23 +56,23 @@ const OUTRIGHT_WIN_ODDS = {
   "Cape Verde": 250000, Ghana: 250000, Australia: 250000,
   // Eliminated in R16
   Paraguay: 250000, Canada: 250000, Brazil: 250000,
+  Mexico: 250000, Portugal: 250000, USA: 250000, Egypt: 250000, Colombia: 250000,
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   R16 "to advance" lines — FanDuel, July 6 2026.
+   QF "to advance" lines — FanDuel / Fox Sports, July 7-8 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   Completed: France ✓, Morocco ✓, Norway ✓.
-   Remaining: Mexico/England (Jul 6), Spain/Portugal (Jul 6),
-   USA/Belgium (Jul 6), Argentina/Egypt (Jul 7), Colombia/Switzerland (Jul 7). */
+   France/Morocco (Jul 9), Spain/Belgium (Jul 10),
+   Norway/England (Jul 11), Argentina/Switzerland (Jul 11). */
 const NEXT_ROUND_ODDS = {
-  // Jul 6
-  "Mexico|England":           [-104, -118],
-  "Spain|Portugal":           [-220, 178],
-  "USA|Belgium":              [-118, -104],
-  // Jul 7
-  "Argentina|Egypt":          [-800, 520],
-  "Colombia|Switzerland":     [-162, 135],
+  // Jul 9
+  "France|Morocco":           [-410, 310],
+  // Jul 10
+  "Spain|Belgium":            [-370, 280],
+  // Jul 11
+  "Norway|England":           [178, -225],
+  "Argentina|Switzerland":    [-145, 425],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
