@@ -33,13 +33,13 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FanDuel / ESPN Betting, July 8 2026 — QFs set.
+   FanDuel / DraftKings, July 9 2026 — QF day 1 (France/Morocco today).
    QF bracket: France/Morocco, Spain/Belgium, Norway/England, Argentina/Switzerland.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 175, Spain: 370, Argentina: 390,
-  England: 480, Norway: 1400, Morocco: 2700,
-  Belgium: 3000, Switzerland: 3300,
+  France: 175, Spain: 370, Argentina: 410,
+  England: 470, Norway: 1450, Morocco: 2750,
+  Belgium: 3000, Switzerland: 3200,
   // Eliminated in group stage
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
   Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
@@ -59,19 +59,19 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   QF "to advance" lines — DraftKings / FanDuel, July 8 2026.
+   QF "to advance" lines — DraftKings / FanDuel, July 9 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
    All R16 complete. QF fixtures Jul 9-11.                    */
 const NEXT_ROUND_ODDS = {
   // Jul 9 — Foxborough
-  "France|Morocco":           [-410, 310],
+  "France|Morocco":           [-395, 300],
   // Jul 10 — Los Angeles
-  "Spain|Belgium":            [-370, 280],
+  "Spain|Belgium":            [-380, 280],
   // Jul 11 — Miami
-  "England|Norway":           [-195, 155],
+  "England|Norway":           [-180, 155],
   // Jul 11 — Kansas City
-  "Argentina|Switzerland":    [-600, 420],
+  "Argentina|Switzerland":    [-300, 230],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
