@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-07-09",
+    "lastUpdated": "2026-07-10",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -1390,7 +1390,10 @@
       "date": "2026-07-09",
       "team1": "France",
       "team2": "Morocco",
-      "score": null,
+      "score": [
+        2,
+        0
+      ],
       "venue": "Foxborough"
     },
     {
