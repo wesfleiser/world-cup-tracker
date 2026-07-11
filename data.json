@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-07-10",
+    "lastUpdated": "2026-07-11",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -1402,7 +1402,10 @@
       "date": "2026-07-10",
       "team1": "Spain",
       "team2": "Belgium",
-      "score": null,
+      "score": [
+        2,
+        1
+      ],
       "venue": "Los Angeles"
     },
     {
