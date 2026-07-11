@@ -33,15 +33,16 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   ESPN / FanDuel / DraftKings, July 10 2026 — QF day 2 (Spain/Belgium
-   today). France beat Morocco 2-0 on Jul 9 to reach the semifinals;
-   Morocco now eliminated. Remaining QF bracket: Spain/Belgium (Jul 10),
-   Norway/England, Argentina/Switzerland (Jul 11).
+   ESPN / FanDuel / DraftKings, July 11 2026 — QF day 3 (Norway/England,
+   Argentina/Switzerland today). France beat Morocco 2-0 on Jul 9, and
+   Spain beat Belgium 2-1 on Jul 10, to reach the semifinals; Belgium
+   now eliminated. France vs Spain is set for the semifinal (Jul 14).
+   Remaining QF bracket: Norway/England, Argentina/Switzerland (Jul 11).
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 180, Spain: 370, Argentina: 400,
+  France: 180, Spain: 360, Argentina: 390,
   England: 470, Norway: 1400, Morocco: 250000,
-  Belgium: 3000, Switzerland: 3300,
+  Belgium: 250000, Switzerland: 3000,
   // Eliminated in group stage
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
   Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
@@ -61,16 +62,14 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   QF "to advance" lines — FanDuel, July 10 2026.
+   QF "to advance" lines — FanDuel/ESPN, July 11 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   France/Morocco complete (France won 2-0); removed. Remaining QF
-   fixtures Jul 10-11.                                          */
+   France/Morocco and Spain/Belgium complete (France won 2-0, Spain won
+   2-1); both removed. Remaining QF fixtures Jul 11.             */
 const NEXT_ROUND_ODDS = {
-  // Jul 10 — Los Angeles
-  "Spain|Belgium":            [-340, 265],
   // Jul 11 — Miami
-  "England|Norway":           [-190, 155],
+  "England|Norway":           [-195, 155],
   // Jul 11 — Kansas City
   "Argentina|Switzerland":    [-320, 245],
 };
