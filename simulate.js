@@ -33,16 +33,15 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   ESPN / FanDuel / DraftKings, July 11 2026 — QF day 3 (Norway/England,
-   Argentina/Switzerland today). France beat Morocco 2-0 on Jul 9, and
-   Spain beat Belgium 2-1 on Jul 10, to reach the semifinals; Belgium
-   now eliminated. France vs Spain is set for the semifinal (Jul 14).
-   Remaining QF bracket: Norway/England, Argentina/Switzerland (Jul 11).
-   Eliminated teams → 250000 (board floor).                    */
+   DraftKings, July 12 2026 — semifinals set. England beat Norway
+   2-1 (AET) and Argentina beat Switzerland 3-1 (AET) on Jul 11,
+   joining France and Spain in the final four. Semifinals: France
+   vs Spain (Jul 14, Arlington), Argentina vs England (Jul 15,
+   Atlanta). Eliminated teams → 250000 (board floor).           */
 const OUTRIGHT_WIN_ODDS = {
-  France: 180, Spain: 360, Argentina: 390,
-  England: 470, Norway: 1400, Morocco: 250000,
-  Belgium: 250000, Switzerland: 3000,
+  France: 150, Spain: 320, Argentina: 360,
+  England: 340, Norway: 250000, Morocco: 250000,
+  Belgium: 250000, Switzerland: 250000,
   // Eliminated in group stage
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
   Jordan: 250000, "New Zealand": 250000, Panama: 250000, Qatar: 250000,
@@ -62,16 +61,16 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   QF "to advance" lines — FanDuel/ESPN, July 11 2026.
+   SF "to advance" (to the final) lines — DraftKings, July 12 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   France/Morocco and Spain/Belgium complete (France won 2-0, Spain won
-   2-1); both removed. Remaining QF fixtures Jul 11.             */
+   Both QF fixtures complete (England beat Norway 2-1 AET, Argentina
+   beat Switzerland 3-1 AET); both removed. Semifinal fixtures below.*/
 const NEXT_ROUND_ODDS = {
-  // Jul 11 — Miami
-  "England|Norway":           [-195, 155],
-  // Jul 11 — Kansas City
-  "Argentina|Switzerland":    [-320, 245],
+  // Jul 14 — Arlington
+  "France|Spain":             [-144, 118],
+  // Jul 15 — Atlanta
+  "Argentina|England":        [-105, -120],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
