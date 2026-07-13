@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-07-12",
+    "lastUpdated": "2026-07-13",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -1445,8 +1445,8 @@
       "num": 102,
       "round": "SF",
       "date": "2026-07-15",
-      "team1": "W99",
-      "team2": "W100",
+      "team1": "England",
+      "team2": "Argentina",
       "score": null,
       "venue": "Atlanta"
     },
