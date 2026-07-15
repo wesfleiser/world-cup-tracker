@@ -33,16 +33,14 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   CBS Sports / ESPN / FanDuel, July 13 2026 — semifinals set.
-   Quarterfinals concluded Jul 11: England beat Norway 2-1 and
-   Argentina beat Switzerland 3-1, joining France (beat Morocco 2-0,
-   Jul 9) and Spain (beat Belgium 2-1, Jul 10). Norway and Switzerland
-   now eliminated. Semifinals: France vs Spain (Jul 14, Arlington),
-   England vs Argentina (Jul 15, Atlanta).
+   FOX Sports, July 15 2026 — final field set.
+   Spain upset France 2-0 (Jul 14, Arlington) to reach the final;
+   France now eliminated. Spain sits atop the board awaiting the
+   winner of England vs Argentina (Jul 15, Atlanta).
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 140, Spain: 330, Argentina: 400,
-  England: 310, Norway: 250000, Morocco: 250000,
+  France: 250000, Spain: -155, Argentina: 370,
+  England: 290, Norway: 250000, Morocco: 250000,
   Belgium: 250000, Switzerland: 250000,
   // Eliminated in group stage
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
@@ -63,16 +61,14 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   SF "to advance" lines — ESPN/FanDuel/DraftKings, July 13 2026.
+   SF "to advance" line — FanDuel, July 15 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   QF complete: England beat Norway 2-1, Argentina beat Switzerland
-   3-1 (both Jul 11). Semifinals now set.                        */
+   France|Spain complete: Spain won 2-0 (Jul 14) and is through to
+   the final. Remaining semifinal kicks off today in Atlanta.     */
 const NEXT_ROUND_ODDS = {
-  // Jul 14 — Arlington
-  "France|Spain":              [-148, 120],
   // Jul 15 — Atlanta
-  "England|Argentina":         [-130, 106],
+  "England|Argentina":         [-122, 106],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
