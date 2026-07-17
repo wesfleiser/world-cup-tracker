@@ -33,14 +33,14 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   FOX Sports, July 15 2026 — final field set.
-   Spain upset France 2-0 (Jul 14, Arlington) to reach the final;
-   France now eliminated. Spain sits atop the board awaiting the
-   winner of England vs Argentina (Jul 15, Atlanta).
+   DraftKings, July 17 2026 — final field set.
+   Argentina beat England 2-1 (Jul 15, Atlanta) to reach the final
+   against Spain; England now eliminated. Final is Spain vs
+   Argentina, Jul 19, East Rutherford.
    Eliminated teams → 250000 (board floor).                    */
 const OUTRIGHT_WIN_ODDS = {
-  France: 250000, Spain: -155, Argentina: 370,
-  England: 290, Norway: 250000, Morocco: 250000,
+  France: 250000, Spain: -164, Argentina: 134,
+  England: 250000, Norway: 250000, Morocco: 250000,
   Belgium: 250000, Switzerland: 250000,
   // Eliminated in group stage
   "Curaçao": 250000, Czechia: 250000, Haiti: 250000, Iraq: 250000,
@@ -61,14 +61,15 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   SF "to advance" line — FanDuel, July 15 2026.
+   Final "to win the Cup" line — DraftKings, July 17 2026.
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
-   France|Spain complete: Spain won 2-0 (Jul 14) and is through to
-   the final. Remaining semifinal kicks off today in Atlanta.     */
+   Both semifinals complete: Spain beat France 2-0 (Jul 14) and
+   Argentina beat England 2-1 (Jul 15). Final kicks off Jul 19
+   in East Rutherford.                                           */
 const NEXT_ROUND_ODDS = {
-  // Jul 15 — Atlanta
-  "England|Argentina":         [-122, 106],
+  // Jul 19 — East Rutherford
+  "Spain|Argentina":            [-164, 134],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
