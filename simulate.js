@@ -33,11 +33,10 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   DraftKings, July 17 2026 — final field set.
-   Argentina beat England 2-1 (Jul 15, Atlanta) to reach the final
-   against Spain; England now eliminated. Final is Spain vs
-   Argentina, Jul 19, East Rutherford.
-   Eliminated teams → 250000 (board floor).                    */
+   DraftKings, July 19 2026 — pre-kickoff, final field set.
+   Line unchanged since Jul 17: Spain -164, Argentina +134 to
+   lift the Cup. Final is Spain vs Argentina, Jul 19, East
+   Rutherford. Eliminated teams → 250000 (board floor).        */
 const OUTRIGHT_WIN_ODDS = {
   France: 250000, Spain: -164, Argentina: 134,
   England: 250000, Norway: 250000, Morocco: 250000,
@@ -61,7 +60,7 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   Final "to win the Cup" line — DraftKings, July 17 2026.
+   Final "to win the Cup" line — DraftKings, July 19 2026 (pre-kickoff).
    Key: "team1|team2"  (either order — lookup handles both).
    Value: [team1_odds, team2_odds].
    Both semifinals complete: Spain beat France 2-0 (Jul 14) and
