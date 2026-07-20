@@ -33,12 +33,12 @@
 const SIM_COUNT = 3000;
 
 /* ── 1. OUTRIGHT WIN ODDS ──────────────────────────────────────
-   DraftKings, July 19 2026 — pre-kickoff, final field set.
-   Line unchanged since Jul 17: Spain -164, Argentina +134 to
-   lift the Cup. Final is Spain vs Argentina, Jul 19, East
-   Rutherford. Eliminated teams → 250000 (board floor).        */
+   Tournament complete, July 19 2026 — Spain won the World Cup,
+   beating Argentina 1-0 (AET, Ferran Torres 106') in East
+   Rutherford. No outright market remains to track.
+   Eliminated teams (incl. runner-up Argentina) → 250000 (floor).*/
 const OUTRIGHT_WIN_ODDS = {
-  France: 250000, Spain: -164, Argentina: 134,
+  France: 250000, Spain: -100000, Argentina: 250000,
   England: 250000, Norway: 250000, Morocco: 250000,
   Belgium: 250000, Switzerland: 250000,
   // Eliminated in group stage
@@ -60,15 +60,11 @@ const OUTRIGHT_WIN_ODDS = {
 };
 
 /* ── 2. NEXT ROUND ODDS ────────────────────────────────────────
-   Final "to win the Cup" line — DraftKings, July 19 2026 (pre-kickoff).
+   Tournament complete — Spain beat Argentina 1-0 (AET) in the
+   July 19 2026 final. No rounds remain, so this table is empty.
    Key: "team1|team2"  (either order — lookup handles both).
-   Value: [team1_odds, team2_odds].
-   Both semifinals complete: Spain beat France 2-0 (Jul 14) and
-   Argentina beat England 2-1 (Jul 15). Final kicks off Jul 19
-   in East Rutherford.                                           */
+   Value: [team1_odds, team2_odds].                              */
 const NEXT_ROUND_ODDS = {
-  // Jul 19 — East Rutherford
-  "Spain|Argentina":            [-164, 134],
 };
 
 /* ── PROBABILITY UTILITIES ────────────────────────────────────── */
