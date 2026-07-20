@@ -2,7 +2,7 @@
   "config": {
     "title": "Wes's World Cup Tracker",
     "subtitle": "2026 FIFA World Cup — Tipping Competition",
-    "lastUpdated": "2026-07-19",
+    "lastUpdated": "2026-07-20",
     "pointsPerStage": 2,
     "prizes": {
       "main": 160,
@@ -1474,7 +1474,10 @@
       "date": "2026-07-19",
       "team1": "Spain",
       "team2": "Argentina",
-      "score": null,
+      "score": [
+        1,
+        0
+      ],
       "venue": "East Rutherford"
     }
   ],
